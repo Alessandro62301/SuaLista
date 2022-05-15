@@ -1,5 +1,5 @@
 import React , {useEffect} from 'react';
-import PreloadSvg from '../../img/preloadSvg.svg';
+import PreloadSvg from '../../assets/img/preloadSvg.svg';
 import { Container , TextTitle , TextParagraph , LoadingIcon} from './styles';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -20,7 +20,7 @@ export default () => {
             if(token){
                 //Validar Token
             }else{
-                // navigation.navigate('SingIn')
+                navigation.navigate('SingIn')
             }
         }
         checkToken();

@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    margin: 0px 20px; 
     background-color:#FAF5F1;
     alignItems: center;
 `;
