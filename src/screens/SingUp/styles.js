@@ -43,3 +43,8 @@ export const SingMessageButtonTextBold = styled.Text`
     color: #F96C00;
     fontWeight: 700;
 `;
+export const AreaLoginExternal = styled.View`
+    flex-direction:row;
+    justify-content:center; 
+    margin-top:20px;
+`;

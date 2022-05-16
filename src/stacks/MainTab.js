@@ -5,18 +5,18 @@ import Home from '../screens/Home';
 import Rascunho from '../screens/Rascunho';
 import Lista from '../screens/Lista';
 import Historico from '../screens/Historico';
-
+import Menu from '../screens/Menu'
 import CustomTabBar from '../components/CustomTabBar';
 
 const Tab = createBottomTabNavigator();
 
-export default ()=> {
+export default ({state})=> {
 
     return (
         <Tab.Navigator 
         initialRouteName="Home"
         screenOptions={{
-            // headerShown:false,
+            headerShown:false
         }}
         tabBar={props=><CustomTabBar {...props} />}
         >
@@ -24,6 +24,7 @@ export default ()=> {
             <Tab.Screen  name="Rascunho" component={Rascunho} />
             <Tab.Screen  name="Lista" component={Lista} />
             <Tab.Screen  name="Historico" component={Historico} />
+            <Tab.Screen  name="Menu" component={Menu} />
         </Tab.Navigator>
     );
 }

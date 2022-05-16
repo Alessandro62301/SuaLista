@@ -31,15 +31,21 @@ export const CustomButtonText = styled.Text`
 export const SingMessageButton = styled.TouchableOpacity`
     flex-direction:row;
     justifyContent: center;
-    margin-top:50px;
+    margin-top:20px;
     marginBottom: 20px;
 `;
 export const SingMessageButtonText = styled.Text`
     fontSize: 16px;
-    color: #F96C00;
+    color: #4f4f4f;
 `;
 export const SingMessageButtonTextBold = styled.Text`
     fontSize: 16px;
     color: #F96C00;
     fontWeight: 700;
+    
+`;
+export const AreaLoginExternal = styled.View`
+    flex-direction:row;
+    justify-content:center; 
+    margin-top:20px;
 `;

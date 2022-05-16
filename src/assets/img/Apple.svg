@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="173" height="59" viewBox="0 0 173 59">
+  <defs>
+    <filter id="Retângulo_86" x="0" y="0" width="173" height="59" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Apple" transform="translate(1412 -1925)">
+    <g transform="matrix(1, 0, 0, 1, -1412, 1925)" filter="url(#Retângulo_86)">
+      <rect id="Retângulo_86-2" data-name="Retângulo 86" width="155" height="41" rx="8" transform="translate(9 8)" fill="#fff"/>
+    </g>
+    <g id="Grupo_173" data-name="Grupo 173" transform="translate(-11 2.75)">
+      <g id="apple-2" data-name="apple" transform="translate(-1273.427 1939.25)">
+        <path id="Caminho_49" data-name="Caminho 49" d="M15.746,12.3a5.118,5.118,0,0,0,3.108,4.685,12.673,12.673,0,0,1-1.6,3.293c-.965,1.411-1.967,2.816-3.545,2.845-1.55.029-2.049-.919-3.822-.919s-2.326.89-3.794.948c-1.523.058-2.683-1.525-3.656-2.931C.447,17.348-1.072,12.1.968,8.556a5.668,5.668,0,0,1,4.791-2.9c1.5-.029,2.907,1.006,3.822,1.006S12.21,5.416,14.014,5.6a5.409,5.409,0,0,1,4.235,2.3,5.237,5.237,0,0,0-2.5,4.406M12.832,3.7a5.1,5.1,0,0,0,1.2-3.7,5.191,5.191,0,0,0-3.411,1.755A4.846,4.846,0,0,0,9.4,5.337,4.294,4.294,0,0,0,12.832,3.7" transform="translate(0)"/>
+      </g>
+      <text id="_Login_com" data-name=" Login com" transform="translate(-1377 1958.25)" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" font-size="18" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="0" y="0" xml:space="preserve"> Login com</tspan></text>
+    </g>
+  </g>
+</svg>

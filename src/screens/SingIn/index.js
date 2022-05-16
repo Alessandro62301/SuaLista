@@ -1,11 +1,12 @@
 import React , {useState} from 'react';
-import { Container , InputArea , CustomButton , CustomButtonText ,SingMessageButton ,SingMessageButtonText ,SingMessageButtonTextBold} from './styles';
-import PreloadSvg from '../../assets/img/preloadSvg.svg';
+import { Container , InputArea , CustomButton , CustomButtonText ,SingMessageButton ,SingMessageButtonText ,SingMessageButtonTextBold , AreaLoginExternal} from './styles';
+import PreloadSvg from '../../assets/img/roda.svg';
 import EmailIcon from '../../assets/img/email.svg';
 import LockIcon from '../../assets/img/lock.svg';
 import SingInput from '../../components/SingInput';
 import { useNavigation } from '@react-navigation/native';
-
+import GoogleIcon from '../../assets/img/Google.svg';
+import AppleIcon from '../../assets/img/Apple.svg';
 
 export default () => {
 
@@ -34,7 +35,7 @@ export default () => {
 
     return (
         <Container>
-            <PreloadSvg  width="200" height="200" style={{marginTop:60}}/>
+            <PreloadSvg  width="200" height="200" style={{marginTop:15}}/>
             <InputArea>
                 <SingInput 
                 IconSvg={EmailIcon}
@@ -53,6 +54,16 @@ export default () => {
                 <CustomButton onPress={handleSingClick}>
                     <CustomButtonText>Login</CustomButtonText>
                 </CustomButton>
+
+                <SingMessageButton>
+                    <SingMessageButtonText>Esqueceu sua senha?</SingMessageButtonText>
+                </SingMessageButton>
+
+                <AreaLoginExternal>    
+                    <GoogleIcon width="160" height="60" fill="#000"></GoogleIcon>  
+                    <AppleIcon  width="160" height="60" fill="#000"></AppleIcon>
+                </AreaLoginExternal>
+
                 <SingMessageButton onPress={handleMessageButtonClick}>
                     <SingMessageButtonText>Ainda não possui uma conta?</SingMessageButtonText>
                     <SingMessageButtonTextBold> Cadastra-se</SingMessageButtonTextBold>
