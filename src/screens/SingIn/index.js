@@ -1,5 +1,4 @@
 import React , {useState} from 'react';
-import { Text } from 'react-native';
 import { Container , InputArea , CustomButton , CustomButtonText ,SingMessageButton ,SingMessageButtonText ,SingMessageButtonTextBold} from './styles';
 import PreloadSvg from '../../assets/img/preloadSvg.svg';
 import EmailIcon from '../../assets/img/email.svg';
@@ -22,7 +21,7 @@ export default () => {
     }
     const handleMessageButtonClickVisitante = () => {
         navigation.reset({
-            routes: [{name: 'Home'}]
+            routes: [{name: 'MainTab'}]
         })
     }
     const handleSingClick = () => {

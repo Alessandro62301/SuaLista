@@ -24,7 +24,7 @@ export default () => {
     }
     const handleSingClick = async() => {
         if(emailField != '' && passwordField != '' && nameField != ''){
-
+            
         }else{
             alert('Prencha os campos');
         }
