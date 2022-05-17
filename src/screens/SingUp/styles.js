@@ -7,9 +7,6 @@ export const Container = styled.SafeAreaView`
     background-color:#FAF5F1;
     alignItems: center;
 `;
-
-//InputArea , SingInput , CustomButton , CustomButtonText ,SingMessageButton ,SingMessageButtonText
-
 export const InputArea = styled.View`
     padding: 40px;
     width: 100%;

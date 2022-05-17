@@ -1,5 +1,5 @@
 import React , {useEffect , useState} from 'react';
-import PreloadSvg from '../../assets/img/preloadSvg.svg';
+import PreloadSvg from '../../assets/img/roda.svg';
 import { Container , TextTitle , TextParagraph , LoadingIcon} from './styles';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -32,7 +32,7 @@ export default () => {
     <Container>
         <TextTitle>{titleRender}</TextTitle>
         <TextParagraph>{ParagraphRender}</TextParagraph>
-        <PreloadSvg width="200" height="200"/>
+        <PreloadSvg width="300" height="300"/>
         <LoadingIcon size="large" color="#F96C00"/>
     </Container>
     );
