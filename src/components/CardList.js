@@ -29,7 +29,7 @@ export const ConteinerText = styled.View`
 `;
 
 
-export default ({color , today}) => {
+export default ({today}) => {
 
     todayColors = ['#FFDEAD','#FFADBD','#CEADFF','#FFC8AD','#C9FFAD','#ADE9FF','#F1FFAD'];
     todayTitle = ['Segunda Feira','Terca Feira','Quarta Feira','Quinta Feira','Sexta Feira','Sabado','Domingo'];
@@ -45,7 +45,7 @@ export default ({color , today}) => {
         <Card style={{backgroundColor:todayColors[day]}}>
             <ConteinerText>
                 <CardDescription>A sua Lista de    {todayTitle[day]}</CardDescription>
-                <CardDate>Dia 0{month}/{date}</CardDate>
+                <CardDate>Dia {date}/0{month}</CardDate>
             </ConteinerText>
             <ListIcon width="90" height="130"  style={{marginBottom: 10 , marginRight:-10}} ></ListIcon>
         </Card>

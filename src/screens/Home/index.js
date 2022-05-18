@@ -1,30 +1,23 @@
 import React from 'react';
-import { Container , Scroller , HeaderArea , HeaderText , BaseIconMenu ,BaseIconMenuAdd , AreaDicas  ,HomeArea , TextDicas ,TextDicasBold , ContainerDicas , ContainerDicasText , ContainerIcon , AreaSlick , AreaSlickList ,ContainerScroll , ContainerScrollList} from './styles';
-import MenuIcon from '../../assets/img/menu-left.svg'
-import AddIcon from '../../assets/img/add.svg';
+import { Container , Scroller , AreaDicas  ,HomeArea , TextDicas ,TextDicasBold , ContainerDicas , ContainerDicasText , ContainerIcon , AreaSlick , AreaSlickList ,ContainerScroll , ContainerScrollList} from './styles';
 import FruitsIcon from '../../assets/img/roda.svg'
 import { useNavigation } from '@react-navigation/native';
 import Item from '../../classes/Item'
 import CardItem from '../../components/CardItem';
 import CardList from '../../components/CardList';
+import HeaderArea from '../../components/HeaderArea';
 
 export default () => {
-
+    
     var item1 = new Item('carne');
     var today = new Date();
     const navigation = useNavigation();
-    console.log(item1);
+
     return(
         <Container>
             <Scroller>
                 <HeaderArea>
-                    <BaseIconMenu onPress={()=>navigation.navigate('Menu')}>
-                        <MenuIcon width="31" height="20" fill="#000000"/>
-                    </BaseIconMenu>
-                        <HeaderText>Sua Lista</HeaderText>
-                    <BaseIconMenuAdd onPress={()=>navigation.navigate('Lista')}>
-                        <AddIcon width="35" height="35"/>
-                    </BaseIconMenuAdd>
+
                 </HeaderArea>
                 <HomeArea>
                     <AreaDicas>

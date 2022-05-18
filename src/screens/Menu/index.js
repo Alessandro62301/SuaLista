@@ -2,7 +2,6 @@ import React from 'react';
 import { Container , Scroller , HeaderArea , BaseIconMenu , MenuArea ,MenuTextTitle , BaseItemMenu , ItemMenu , ItemMenuText, BaseFooter , AreaPremiun , AreaLogin , AreaPremiunText ,AreaPremiunTextBold , AreaPemiumSvg , AreaPemiumText , AreaLoginAvatar , AreaLoginTextContent} from './styles';
 import CloseIcon from '../../assets/img/close.svg'
 import { useNavigation } from '@react-navigation/native';
-
 import HomeIcon from '../../assets/img/home.svg'
 import RascunhoIcon from '../../assets/img/lista.svg'
 import ListaIcon from '../../assets/img/carrinho.svg'
@@ -11,34 +10,33 @@ import ConfigIcon from '../../assets/img/settings.svg'
 import PremiumIcon from '../../assets/img/premium.svg'
 import AvatarIcon from '../../assets/img/account.svg'
 
-export default () => {
-
+export default ({}) => {
+    // onPress={()=>navigation.navigate('Home')}
     const navigation = useNavigation();
-
     return(
         <Container>
             <Scroller>
                 <HeaderArea>
-                    <BaseIconMenu onPress={()=>navigation.navigate('Home')}>
+                    <BaseIconMenu onPress={()=>navigation.goBack()}>
                         <CloseIcon width="31" height="31"/>
                     </BaseIconMenu>
                 </HeaderArea>
                 <MenuArea>
                     <MenuTextTitle>Menu</MenuTextTitle>
                     <BaseItemMenu>
-                        <ItemMenu>
+                        <ItemMenu onPress={()=>navigation.navigate('Home')}>
                             <HomeIcon width="21" height="21" fill="#000000"></HomeIcon>
                             <ItemMenuText>Home</ItemMenuText>
                         </ItemMenu>
-                        <ItemMenu>
+                        <ItemMenu onPress={()=>navigation.navigate('Rascunho')}>
                             <RascunhoIcon width="21" height="21" fill="#000000"></RascunhoIcon>
                             <ItemMenuText>Rascunho</ItemMenuText>
                         </ItemMenu>
-                        <ItemMenu>
+                        <ItemMenu onPress={()=>navigation.navigate('Lista')}>
                             <ListaIcon width="21" height="21" fill="#000000"></ListaIcon>
                             <ItemMenuText>Lista</ItemMenuText>
                         </ItemMenu>
-                        <ItemMenu>
+                        <ItemMenu onPress={()=>navigation.navigate('Historico')}>
                             <HistoricoIcon width="21" height="21" fill="#000000"></HistoricoIcon>
                             <ItemMenuText>Historico</ItemMenuText>
                         </ItemMenu>
