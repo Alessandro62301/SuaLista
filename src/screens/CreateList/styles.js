@@ -31,7 +31,7 @@ export const AreaButton = styled.View`
     justify-content:space-between;
     margin-top:-20px;
 `;
-export const ButtonVoltar = styled.View` 
+export const ButtonVoltar = styled.TouchableOpacity` 
     width: 130px;
     height: 60px;
     border: 2px solid #F96C00;
@@ -39,7 +39,7 @@ export const ButtonVoltar = styled.View`
     align-items: center;
     justify-content: center;
 `;
-export const ButtonCriar = styled.View` 
+export const ButtonCriar = styled.TouchableOpacity` 
     width: 180px;
     height: 60px;
     background: #F96C00;

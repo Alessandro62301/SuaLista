@@ -11,7 +11,6 @@ import PremiumIcon from '../../assets/img/premium.svg'
 import AvatarIcon from '../../assets/img/account.svg'
 
 export default ({}) => {
-    // onPress={()=>navigation.navigate('Home')}
     const navigation = useNavigation();
     return(
         <Container>

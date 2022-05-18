@@ -5,12 +5,10 @@ import HeaderArea from '../../components/HeaderArea';
 import SingInput from '../../components/SingInput';
 import Icon from '../../assets/img/nav_next.svg'
 
-export default () => {
+export default ({}) => {
+    const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [valueField, setValueField] = useState();
-
-    const navigation = useNavigation();
-
     return(
         <Container>
             <Wrapper>
@@ -35,7 +33,7 @@ export default () => {
                 /> 
             </AreaInput>
             <AreaButton>
-                    <ButtonVoltar>
+                    <ButtonVoltar onPress={()=>navigation.goBack()} >
                         <ButtonTextOrange>Voltar</ButtonTextOrange>
                     </ButtonVoltar>
                     <ButtonCriar>
