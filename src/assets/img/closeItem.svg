@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+  <g id="Grupo_122" data-name="Grupo 122" transform="translate(-37 -232)">
+    <circle id="Elipse_9" data-name="Elipse 9" cx="12.5" cy="12.5" r="12.5" transform="translate(37 232)" fill="#ff0707"/>
+    <g id="Grupo_121" data-name="Grupo 121" transform="translate(-726.159 -19.688) rotate(-45)">
+      <g id="Icon_feather-plus" data-name="Icon feather-plus" transform="translate(366.947 730) rotate(90)">
+        <path id="Caminho_22" data-name="Caminho 22" d="M0,0V10.566" transform="translate(5.283)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path id="Caminho_23" data-name="Caminho 23" d="M0,0H10.566" transform="translate(0 5.283)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>

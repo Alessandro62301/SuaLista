@@ -3,7 +3,7 @@ import { Container , Scroller , AreaDicas  ,HomeArea , TextDicas ,TextDicasBold 
 import FruitsIcon from '../../assets/img/roda.svg'
 import { useNavigation } from '@react-navigation/native';
 import Item from '../../classes/Item'
-import CardItem from '../../components/CardItem';
+import CardItemHome from '../../components/CardItemHome';
 import CardList from '../../components/CardList';
 import HeaderArea from '../../components/HeaderArea';
 
@@ -37,10 +37,10 @@ export default () => {
                         <ContainerScroll 
                             indicatorStyle="white"
                             horizontal>       
-                            <CardItem title={'Banana'}/>
-                            <CardItem title={'Uva'}/>
-                            <CardItem title={'Melancia'}/>
-                            <CardItem title={'Pessego'}/>
+                            <CardItemHome title={'Banana'}/>
+                            <CardItemHome title={'Uva'}/>
+                            <CardItemHome title={'Melancia'}/>
+                            <CardItemHome title={'Pessego'}/>
                         </ContainerScroll>                           
                     </AreaSlick>
                     <AreaSlickList>
