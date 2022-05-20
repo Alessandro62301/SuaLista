@@ -3,7 +3,7 @@ import MenuIcon from '../assets/img/menu-left.svg'
 import AddIcon from '../assets/img/add.svg';
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components';
-
+import DropShadow from "react-native-drop-shadow";
 
 
 export const Container = styled.SafeAreaView`
@@ -47,9 +47,21 @@ export default ({showList, showName, showMenu}) => {
     return(
         <Container>
                 <HeaderArea>
+                    <DropShadow
+                        style={{
+                            shadowColor: "rgba(0,0,0,0.2)",
+                            shadowOffset: {
+                            width: 0,
+                            height: 0,
+                            },
+                            shadowOpacity: 1,
+                            shadowRadius: 5,
+                        }}
+                    >  
                     <BaseIconMenu onPress={()=>navigation.navigate('Menu')} style={{opacity: showMenu === false ? 0 : 1}}>
                         <MenuIcon width="31" height="20" fill="#000000"/>
                     </BaseIconMenu>
+                    </DropShadow>
                         <HeaderText style={{opacity: showName === false ? 0 : 1}}>Sua Lista</HeaderText>
                     <BaseIconMenuAdd onPress={()=>navigation.navigate('CreateList')} style={{opacity: showList === false ? 0 : 1}}>
                         <AddIcon width="35" height="35"/>

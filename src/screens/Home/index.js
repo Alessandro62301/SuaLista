@@ -6,6 +6,13 @@ import Item from '../../classes/Item'
 import CardItemHome from '../../components/CardItemHome';
 import CardList from '../../components/CardList';
 import HeaderArea from '../../components/HeaderArea';
+import DropShadow from "react-native-drop-shadow";
+
+import IconBanana from '../../assets/img/banna.svg';
+import IconUva from '../../assets/img/Uva.svg';
+import IconMelancia from '../../assets/img/Melancia.svg';
+import IconPessego from '../../assets/img/pessego.svg';
+
 
 export default () => {
     
@@ -22,6 +29,17 @@ export default () => {
                 <HomeArea>
                     <AreaDicas>
                             <TextDicas>Dicas</TextDicas>
+                            <DropShadow
+                            style={{
+                                shadowColor: "rgba(0,0,0,0.2)",
+                                shadowOffset: {
+                                width: 0,
+                                height: 0,
+                                },
+                                shadowOpacity: 1,
+                                shadowRadius: 5,
+                            }}
+                            >  
                             <ContainerDicas>
                                 <ContainerDicasText>
                                     <TextDicas>05/10</TextDicas>
@@ -31,16 +49,17 @@ export default () => {
                                     <FruitsIcon width="120" height="120"></FruitsIcon>
                                 </ContainerIcon>
                             </ContainerDicas>
+                        </DropShadow>
                     </AreaDicas>
                     <AreaSlick>
                         <TextDicasBold>Selecione rapidamente produtos</TextDicasBold>
                         <ContainerScroll 
                             indicatorStyle="white"
                             horizontal>       
-                            <CardItemHome title={'Banana'}/>
-                            <CardItemHome title={'Uva'}/>
-                            <CardItemHome title={'Melancia'}/>
-                            <CardItemHome title={'Pessego'}/>
+                            <CardItemHome title={'Banana'} Icon={IconBanana}/>
+                            <CardItemHome title={'Uva'} Icon={IconUva}/>
+                            <CardItemHome title={'Pessego'} Icon={IconPessego}/>
+                            <CardItemHome title={'Melancia'} Icon={IconMelancia}/>
                         </ContainerScroll>                           
                     </AreaSlick>
                     <AreaSlickList>

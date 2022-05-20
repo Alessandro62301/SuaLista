@@ -1,14 +1,27 @@
-import React , {useState} from 'react';
+import React , {useState , useEffect} from 'react';
 import { Container, Wrapper , AreaText , AreaContent , AreaInput , AreaButton, ButtonVoltar, ButtonCriar, ButtonTextWhite, ButtonTextOrange} from './styles';
 import { useNavigation } from '@react-navigation/native';
 import HeaderArea from '../../components/HeaderArea';
 import SingInput from '../../components/SingInput';
 import Icon from '../../assets/img/nav_next.svg'
 
+
 export default ({}) => {
     const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [valueField, setValueField] = useState();
+    
+    const goTo = (screenName) => {
+        navigation.navigate(screenName , {name : nameField , balance : valueField});
+    }
+    const CreateList = () => {
+        if(nameField != '' & valueField != null){
+            goTo('Lista');
+        }else{
+            alert('Preencha os Campos')
+        }
+    }
+
     return(
         <Container>
             <Wrapper>
@@ -33,10 +46,10 @@ export default ({}) => {
                 /> 
             </AreaInput>
             <AreaButton>
-                    <ButtonVoltar onPress={()=>navigation.goBack()} >
+                    <ButtonVoltar  onPress={()=>goTo('Home')}>
                         <ButtonTextOrange>Voltar</ButtonTextOrange>
                     </ButtonVoltar>
-                    <ButtonCriar>
+                    <ButtonCriar onPress={()=>CreateList()}>
                         <ButtonTextWhite>Criar Lista</ButtonTextWhite>
                         <Icon fill="#fff"></Icon>
                     </ButtonCriar>

@@ -21,7 +21,7 @@ export default () => {
             if(token){
                 //Validar Token
             }else{
-                navigation.navigate('SingIn')
+                navigation.navigate('MainTab')
             }
         }
         checkToken();

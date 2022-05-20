@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import DropShadow from "react-native-drop-shadow";
 
 import ListIcon from '../assets/img/bolsa.svg';
 
@@ -42,6 +43,17 @@ export default ({today}) => {
     month = month + 1;
 
     return(    
+        <DropShadow
+        style={{
+            shadowColor: "rgba(0,0,0,0.2)",
+            shadowOffset: {
+            width: 0,
+            height: 0,
+            },
+            shadowOpacity: 1,
+            shadowRadius: 5,
+        }}
+        >  
         <Card style={{backgroundColor:todayColors[day]}}>
             <ConteinerText>
                 <CardDescription>A sua Lista de    {todayTitle[day]}</CardDescription>
@@ -49,5 +61,6 @@ export default ({today}) => {
             </ConteinerText>
             <ListIcon width="90" height="130"  style={{marginBottom: 10 , marginRight:-10}} ></ListIcon>
         </Card>
+        </DropShadow>
     );
 }

@@ -4,11 +4,22 @@ export default class Item {
     quantity = Int16Array;
     status = Boolean;
 
-    constructor(name) {
+    constructor(name , price , quantity) {
         this.name = name;
-        this.price = 0;
-        this.quantity = 1;
+        this.price = price;
+        this.quantity = quantity;
         this.status = false;
       }
-    
+      
+      addQuantity(){
+        this.quantity++;
+      }
+      removeQuantity(){
+        if(this.quantity - 1 > 0){
+          this.quantity  = this.quantity - 1;
+        }
+      }      
+      setStatus(){
+        this.status = !this.status;
+      }
 }

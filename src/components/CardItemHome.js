@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
+import DropShadow from "react-native-drop-shadow";
 
-import BananaIcon from '../assets/img/banna.svg'
 
 export const Card = styled.View`
     width: 110px;
@@ -20,12 +20,24 @@ export const CardTitle = styled.Text`
 `;
 
 
-export default ({title}) => {
+export default ({title , Icon}) => {
 
     return(      
+        <DropShadow
+        style={{
+            shadowColor: "rgba(0,0,0,0.2)",
+            shadowOffset: {
+            width: 0,
+            height: 0,
+            },
+            shadowOpacity: 1,
+            shadowRadius: 5,
+        }}
+        >  
         <Card>
             <CardTitle>{title}</CardTitle>
-            <BananaIcon width="80" height="80"></BananaIcon>
+            <Icon width="80" height="80"></Icon>
         </Card>
+        </DropShadow>
     );
 }

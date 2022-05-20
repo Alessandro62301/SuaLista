@@ -27,4 +27,15 @@ export const HeaderText = styled.Text`
     fontSize: 25px;
     fontWeight: 700;
     color: #000;
+    
+`;
+export const AreaNameText = styled.Text`
+    fontSize: 32px;
+    fontWeight: 700;
+    color: #F96C00;
+`;
+
+export const AreaNameList = styled.View`
+    width: 100%;
+    height: 60px;
 `;
