@@ -38,7 +38,7 @@ export default ({state , navigation }) => {
             shadowOpacity: 1,
             shadowRadius: 5,
           }}
-        >  
+        > 
         <TabArea style={{display: state.index===4? "none" : "flex"}} >
             <TabItem onPress={()=>goTo('Home')}>
                 <HomeIcon  style={{opacity: state.index===0? 1 : 0.7}} width="28" height="28" fill="#F96C00" />

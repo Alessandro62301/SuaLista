@@ -6,6 +6,7 @@ import UserContextProvider from './src/contexts/UserContext';
 
 export default () => {
 
+
   return (
   <GestureHandlerRootView style={{ flex: 1 }}>
     <UserContextProvider>

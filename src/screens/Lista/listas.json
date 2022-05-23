@@ -1,0 +1,87 @@
+{
+    "balance": "1203",
+    "currentBalance": "1203",
+    "date": "2022-05-20",
+    "items": [
+      {
+        "id": 538.2019742846506,
+        "name": "Arroz",
+        "price": 10,
+        "quantity": 1,
+        "status": false
+      },
+      {
+        "id": 472.7909222054172,
+        "name": "Batata",
+        "price": 3,
+        "quantity": 4,
+        "status": false
+      },
+      {
+        "id": 288.7324749349167,
+        "name": "Cenoura",
+        "price": 1,
+        "quantity": 6,
+        "status": false
+      },
+      {
+        "id": 650.5690149985652,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      },
+      {
+        "id": 65.2308648151019213,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      },
+      {
+        "id": 65.23585989513,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      },
+      {
+        "id": 65.151515151234,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      },
+      {
+        "id": 65.15155555553,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      },
+      {
+        "id": 65.2308641551019213,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      },
+      {
+        "id": 65.2308648301551553,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      },
+      {
+        "id": 65.24146483019213,
+        "name": "Leite",
+        "price": 2,
+        "quantity": 5,
+        "status": false
+      }
+    ],
+    "name": "Maio",
+    "status": false,
+    "total": 0
+  }

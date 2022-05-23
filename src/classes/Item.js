@@ -3,12 +3,13 @@ export default class Item {
     price  = Float32Array;
     quantity = Int16Array;
     status = Boolean;
-
+    id = Float32Array;
     constructor(name , price , quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.status = false;
+        this.id = Math.round(Math.random() * 1000 * Math.random() * 100);
       }
       
       addQuantity(){

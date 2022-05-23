@@ -6,7 +6,8 @@ import CloseIcon from '../../assets/img/closeItem.svg'
 import AddIcon from '../../assets/img/mais.svg'
 import RemoveIcon from '../../assets/img/menos.svg'
 import PencilIcon from '../../assets/img/lapis.svg'
-import TouchHistoryMath from "react-native/Libraries/Interaction/TouchHistoryMath";
+
+
 export const Card = styled.View`
     width: 100%;
     height: 78px
@@ -46,7 +47,7 @@ export const ButtonArea = styled.TouchableOpacity`
     background: #fff;
     border-radius:8px;
 `;
-export const CloseArea = styled.View`
+export const CloseArea = styled.TouchableOpacity`
     justify-content:flex-start;
     align-items: flex-start;
     width: 20px;
@@ -73,29 +74,41 @@ export const Check = styled.View`
     margin-marginLeft: : 20px;
 `;
 
-export default ({item}) => {
+export default ({item , clickFnAdd , clickFnRemove , clickFnDelete}) => {
+
 
     const [statusCheck,setStatusCheck] = useState(false);
     const [quantityState,setQuantity] = useState(item.quantity);
 
-    const handleCheck = () => {
-        item.setStatus();
-        setStatusCheck(!statusCheck);
-        console.log(item);
 
+    const handleCheck = () => {
+        setStatusCheck(!item.status);
+        item.status = !item.status;
+        console.log(item);
     }
     const handleAdd = () => {
-        item.addQuantity();
-        setQuantity(item.quantity);
-        console.log(item);
+        item.quantity = item.quantity + 1;
+        setQuantity(item.quantity)
+        console.log(item.quantity);
+        clickFnAdd()
 
     }
     const handleRemove = () => {
-        item.removeQuantity();
-        setQuantity(item.quantity);
-        console.log(item);
+        if(item.quantity - 1 > 0){
+            item.quantity  = item.quantity - 1;
+          }    
+        setQuantity(item.quantity)
+        console.log(item.quantity);
+        clickFnAdd()
 
     }
+    const handleClose = () => {
+        console.log('lalala');
+    }
+
+    setTimeout(()=>{
+        setQuantity(item.quantity);
+    },300)
 
     return(    
         <DropShadow
@@ -119,19 +132,19 @@ export default ({item}) => {
                     <TextDesc>{item.name}</TextDesc>
                 </TextArea>
                 <AddArea>
-                    <ButtonArea onPress={()=>handleAdd(item)}>
-                        <AddIcon width="10" height="10" fill="#000" ></AddIcon>
+                    <ButtonArea onPress={()=>handleRemove()}>
+                        <RemoveIcon width="10" height="10" fill="#000"></RemoveIcon>
                     </ButtonArea>
                     <TextBold>{quantityState}</TextBold>
-                    <ButtonArea onPress={()=>handleRemove(item)}>
-                        <RemoveIcon width="10" height="10" fill="#000"></RemoveIcon>
+                    <ButtonArea onPress={()=>handleAdd()}>
+                        <AddIcon width="10" height="10" fill="#000" ></AddIcon>
                     </ButtonArea>
                 </AddArea>
                 <CheckArea onPress={()=>handleCheck()}>
                     <Check>
                     </Check>
                 </CheckArea>
-                <CloseArea>
+                <CloseArea onPress={()=>handleClose()}>
                     <CloseIcon width="20" height="20"></CloseIcon>
                 </CloseArea>
             </Card>
