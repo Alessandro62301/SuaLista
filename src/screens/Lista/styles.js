@@ -16,39 +16,42 @@ export const ContainerCenter = styled.View`
     padding: 0 30px;
 `;
 export const HeaderAreaSaldo = styled.View`
-    padding: 20px 0;
     flex-direction:row;
     justify-content: space-between;
     width: 100%;    
+`;
+export const HeaderRow = styled.Text`
+    flex-direction:row;
+    margin-bottom:10px;
+    width: 250px;
+`;
+export const AreaNameText = styled.Text`
+    fontSize: 20px;
+    fontWeight: 700;
+    color: #F96C00;
 `;
 export const HeaderTextGreen = styled.Text`
     fontSize: 25px;
     fontWeight: 700;
     color: #2FA776;
-    marginLeft: 10px;
+    margin-left:20px;
 `;
 export const HeaderText = styled.Text`
     fontSize: 25px;
     fontWeight: 700;
-    color: #000;
-    
-`;
-export const AreaNameText = styled.Text`
-    fontSize: 28px;
-    fontWeight: 700;
-    color: #F96C00;
+    color: #000; 
 `;
 
 export const AreaNameList = styled.View`
     width: 100%;
-    height: 60px;
+    height: 30px;
 `;
 
-export const HeaderAreaIcon = styled.View`
-    
+export const HeaderAreaIcon = styled.TouchableOpacity`
+    justify-content: center;
 `;
 export const HeaderAreaText = styled.View`
-    flex-direction:row;
+    margin-top:20px;
 `;
 export const AreaAddItem = styled.View`
      width: 100%;
@@ -69,30 +72,43 @@ export const Rows = styled.View`
     flex-direction:row;
     width: 250px;
     justify-content: space-between;
-    margin: 10px ;
 `;
 export const AreaTotalText = styled.Text`
     fontSize: 18px;
     color: #fff;
     fontWeight: 700;
 `;
-export const BackText = styled.View`
-    // background: #fff;
-    // border-radius: 8px;
-    // width: 100px;
-    // height: 25px;
-    // justify-content: center;
-    // align-items: center;
-`;
 export const RowStyled = styled.View`
     width: 100%;
     height: 2px;
     background: #fff;
-    opacity: .5;
 `;
 export const AreaCard = styled.View`
+    margin-bottom:200px;
 `;
 export const Wrapper = styled.View`
     width: 100%;
+    padding: 10px 30px;
+    border-top-left-radius:14px;
+    border-top-right-radius:14px;
+    background: #fff;
+`;
+export const LoadingIcon = styled.ActivityIndicator`
+    margin-top: 100px;
+`;
+export const CustomButton = styled.TouchableOpacity`
+    height: 40px;
+    background-color:#F96C00; 
+    border-radius:8px;
+    justifyContent: center;
+    alignItems: center;
+    margin-top:15px;
+`;
+export const CustomButtonText = styled.Text`
+    fontSize: 18px;
+    color: #fff;
+    fontWeight: 700;
+`;
+export const ContainerInput = styled.View`
     padding: 0 30px;
 `;

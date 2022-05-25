@@ -4,10 +4,10 @@ export default class Item {
     quantity = Int16Array;
     status = Boolean;
     id = Float32Array;
-    constructor(name , price , quantity) {
+    constructor(name , price) {
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.quantity = 1;
         this.status = false;
         this.id = Math.round(Math.random() * 1000 * Math.random() * 100);
       }

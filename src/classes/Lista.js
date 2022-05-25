@@ -5,16 +5,14 @@ export default class Lista {
     status = Boolean;
     currentBalance = Float32Array;
     total = Float32Array;
-    date = Date;
 
-    constructor(name , balance) {
+    constructor(name , balance , total) {
         this.name = name;
         this.balance = balance;
         this.status = false;
         this.items = [];
-        this.total = 0;
+        this.total = total;
         this.currentBalance = 0;
-        this.date = new Date();
     }
 
 

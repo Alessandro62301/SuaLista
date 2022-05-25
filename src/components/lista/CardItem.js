@@ -74,16 +74,16 @@ export const Check = styled.View`
     margin-marginLeft: : 20px;
 `;
 
-export default ({item , clickFnAdd , clickFnRemove , clickFnDelete}) => {
+export default ({item , clickFnAdd , remove}) => {
 
 
-    const [statusCheck,setStatusCheck] = useState(false);
+    const [statusCheck,setStatusCheck] = useState(item.status);
     const [quantityState,setQuantity] = useState(item.quantity);
 
 
     const handleCheck = () => {
-        setStatusCheck(!item.status);
         item.status = !item.status;
+        setStatusCheck(item.status);
         console.log(item);
     }
     const handleAdd = () => {
@@ -94,7 +94,7 @@ export default ({item , clickFnAdd , clickFnRemove , clickFnDelete}) => {
 
     }
     const handleRemove = () => {
-        if(item.quantity - 1 > 0){
+        if(item.quantity - 1 > -1){
             item.quantity  = item.quantity - 1;
           }    
         setQuantity(item.quantity)
@@ -103,7 +103,7 @@ export default ({item , clickFnAdd , clickFnRemove , clickFnDelete}) => {
 
     }
     const handleClose = () => {
-        console.log('lalala');
+        remove(item.id);
     }
 
     setTimeout(()=>{
@@ -126,7 +126,7 @@ export default ({item , clickFnAdd , clickFnRemove , clickFnDelete}) => {
             <Card>
                 <TextArea>
                     <PriceArea>
-                        <TextBold>R${item.price},00</TextBold>
+                        <TextBold>R${item.price}</TextBold>
                         <PencilIcon style={{marginLeft: 10}}></PencilIcon>
                     </PriceArea>
                     <TextDesc>{item.name}</TextDesc>

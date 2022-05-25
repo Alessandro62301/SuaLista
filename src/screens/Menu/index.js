@@ -12,6 +12,7 @@ import AvatarIcon from '../../assets/img/account.svg'
 
 export default ({}) => {
     const navigation = useNavigation();
+
     return(
         <Container>
             <Scroller>

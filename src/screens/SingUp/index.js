@@ -49,6 +49,7 @@ export default () => {
                 placeholder="Digite Seu Numero"
                 value={numeroField}
                 onChangeText={t=>setNumeroField(t)}
+                
                 />
 
                 <SingInput 
@@ -56,6 +57,7 @@ export default () => {
                 placeholder="Digite Seu Email"
                 value={emailField}
                 onChangeText={t=>setEmail(t)}
+                keyBoardType={'email-address'}
                 />
 
                 <SingInput 
