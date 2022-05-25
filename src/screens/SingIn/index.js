@@ -55,7 +55,9 @@ export default () => {
                 <CustomButton onPress={handleSingClick}>
                     <CustomButtonText>Login</CustomButtonText>
                 </CustomButton>
-
+                <SingMessageButton onPress={handleMessageButtonClickVisitante}>
+                    <SingMessageButtonTextBold> Entrar como Visitante</SingMessageButtonTextBold>
+                </SingMessageButton>
                 <SingMessageButton>
                     <SingMessageButtonText>Esqueceu sua senha?</SingMessageButtonText>
                 </SingMessageButton>
@@ -69,10 +71,10 @@ export default () => {
                     <SingMessageButtonText>Ainda não possui uma conta?</SingMessageButtonText>
                     <SingMessageButtonTextBold> Cadastra-se</SingMessageButtonTextBold>
                 </SingMessageButton>
-                
                 <SingMessageButton onPress={handleMessageButtonClickVisitante}>
                     <SingMessageButtonTextBold> Entrar como Visitante</SingMessageButtonTextBold>
                 </SingMessageButton>
+               
             </InputArea>
         </Container>
     );
