@@ -30,12 +30,12 @@ export default ({state , navigation }) => {
     return (
         <DropShadow
         style={{
-            shadowColor: "rgba(0,0,0,0.2)",
+            shadowColor: "#000",
             shadowOffset: {
               width: 0,
               height: 0,
             },
-            shadowOpacity: 1,
+            shadowOpacity: 0.3,
             shadowRadius: 5,
           }}
         > 

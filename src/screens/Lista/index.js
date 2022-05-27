@@ -234,14 +234,14 @@ useEffect(()=>{
             : <Wrapper style={{position: 'absolute' , bottom: 0 , opacity: showTotal == true? 1 : 0}}>
             <AreaTotal style={{borderTopRightRadius: 14 , borderTopLeftRadius: 14}}>
             <Rows>
-                <AreaTotalText>Total:</AreaTotalText><AreaTotalText>R$ {totalField}</AreaTotalText>
+                <AreaTotalText>Total:</AreaTotalText><AreaTotalText>R$ {(totalField).toFixed(2)}</AreaTotalText>
             </Rows>
             </AreaTotal>
             <RowStyled></RowStyled>
             <AreaTotal style={{backgroundColor: trocoField<0? '#fff' : '#F96C00' , borderBottomRightRadius: 14 , borderBottomLeftRadius: 14}}>
             <Rows>
                 <AreaTotalText style={{color: trocoField<0? '#f00' : '#fff'}}>Saldo de Troco:</AreaTotalText>
-                    <AreaTotalText style={{color: trocoField<0? '#f00' : '#fff'}}>R$ {trocoField}</AreaTotalText> 
+                    <AreaTotalText style={{color: trocoField<0? '#f00' : '#fff'}}>R$ {(trocoField).toFixed(2)}</AreaTotalText> 
             </Rows>
             </AreaTotal>
             </Wrapper>
