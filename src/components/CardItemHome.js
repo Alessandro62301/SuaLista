@@ -23,21 +23,21 @@ export const CardTitle = styled.Text`
 export default ({title , Icon}) => {
 
     return(      
-        <DropShadow
-        style={{
-            shadowColor: "rgba(0,0,0,0.2)",
-            shadowOffset: {
-            width: 0,
-            height: 0,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 5,
-        }}
-        >  
+        // <DropShadow
+        // style={{
+        //     shadowColor: "rgba(0,0,0,0.2)",
+        //     shadowOffset: {
+        //     width: 0,
+        //     height: 0,
+        //     },
+        //     shadowOpacity: 1,
+        //     shadowRadius: 5,
+        // }}
+        // >  
         <Card>
             <CardTitle>{title}</CardTitle>
             <Icon width="80" height="80"></Icon>
         </Card>
-        </DropShadow>
+        // </DropShadow>
     );
 }
