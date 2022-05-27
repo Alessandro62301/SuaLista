@@ -50,7 +50,7 @@ export const ContainerIcon = styled.View`
     align-items:flex-end;  
 `;
 export const AreaSlick = styled.View`
-    height: 180px;
+    height: 190px;
     padding: 10px 30px;
 `;
 export const AreaSlickList = styled.View`

@@ -30,16 +30,16 @@ export default () => {
                 <HomeArea>
                     <AreaDicas>
                             <TextDicas>Dicas</TextDicas>
-                            {/* <DropShadow
+                            <DropShadow
                             style={{
-                                shadowColor: "rgba(0,0,0,0.2)",
+                                shadowColor: "#000",
                                 shadowOffset: {
                                 width: 0,
                                 height: 0,
                                 },
-                                shadowOpacity: 1,
+                                shadowOpacity: 0.3,
                                 shadowRadius: 5,
-                          }}> */}
+                          }}>
                             <ContainerDicas>
                                 <ContainerDicasText>
                                     <TextDicas>05/10</TextDicas>
@@ -49,7 +49,7 @@ export default () => {
                                     <FruitsIcon width="120" height="120"></FruitsIcon>
                                 </ContainerIcon>
                             </ContainerDicas>
-                            {/* </DropShadow> */}
+                            </DropShadow>
                     </AreaDicas>
                     <AreaSlick>
                         <TextDicasBold>Selecione rapidamente produtos</TextDicasBold>

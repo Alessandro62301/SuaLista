@@ -111,18 +111,18 @@ export default ({item , clickFnAdd , remove}) => {
     },300)
 
     return(    
-        // <DropShadow
-        // style={{
-        //     shadowColor: "rgba(0,0,0,0.2)",
-        //     shadowOffset: {
-        //       width: 0,
-        //       height: 0,
-        //     },
-        //     shadowOpacity: 1,
-        //     shadowRadius: 5,
-        //     opacity:statusCheck===true? 0.2 : 1
-        //   }}
-        // >  
+        <DropShadow
+        style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 5,
+            opacity:statusCheck===true? 0.2 : 1
+          }}
+        >  
             <Card>
                 <TextArea>
                     <PriceArea>
@@ -148,6 +148,6 @@ export default ({item , clickFnAdd , remove}) => {
                     <CloseIcon width="20" height="20"></CloseIcon>
                 </CloseArea>
             </Card>
-        // </DropShadow>
+        </DropShadow>
     );
 }

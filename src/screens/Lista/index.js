@@ -72,7 +72,7 @@ export default ({}) => {
     }
     const render = () => { 
         setTotalField(total())
-        setTrocoField(balanceField - total())
+        setTrocoField((balanceField - total()))
     }
 
     const total = () => {
@@ -80,9 +80,7 @@ export default ({}) => {
             list.map(item => {
                 totalTemp = totalTemp + (item.price*item.quantity)
             })
-            // if(totalTemp > balanceField){
-            //     alert('Saldo Insuficiente')
-            // }
+            totalTemp;
     return totalTemp;    
     }
 
@@ -100,25 +98,33 @@ export default ({}) => {
     }
     const addItem = () => { 
         
-         if( showAddArea == true && nameItem != ''  && priceItem != ''){
-             const item = new Item(nameItem,parseFloat(priceItem));
-             list.push(item);
-             setTotalField(total())
-             setTrocoField(balanceField - total())
-             render();
-             console.log('Item Adicionado' + item);
-             setNameItem('');
-             setPriceItem('')
-         }else{
-            if(nameItem == '' && priceItem == ''){
-                setShowAddArea(!showAddArea)
+       
+            if( showAddArea == true && nameItem != ''  && priceItem != ''){
+                
+                if(isNaN(parseFloat(priceItem))){
+                    alert('Preco Invalido');
+                    setPriceItem('')
+                }else{
+                    
+                const item = new Item(nameItem,parseFloat(priceItem));
+                list.push(item);
+                setTotalField(total())
+                setTrocoField(balanceField - total())
+                render();
+                console.log('Item Adicionado' + item);
+                setNameItem('');
+                setPriceItem('')
+                }
+
+               
             }else{
-                alert('Preencha os campos')
-                setShowAddArea(true)
+               if(nameItem == '' && priceItem == ''){
+                   setShowAddArea(!showAddArea)
+               }else{
+                   alert('Preencha os campos')
+                   setShowAddArea(true)
+               }
             }
-         }
-         
-    
         
     }
     
@@ -131,7 +137,7 @@ export default ({}) => {
                 setLoading(true)
                 setNameField(teste.name)
 
-                setBalanceField(teste.balance)
+                setBalanceField((teste.balance))
                 setTotalField(teste.total)
                 setTrocoField(teste.balance - teste.total)
 
