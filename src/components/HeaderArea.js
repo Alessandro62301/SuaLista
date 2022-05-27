@@ -16,6 +16,7 @@ export const HeaderArea = styled.SafeAreaView`
     flex-direction:row;
     alignItems: center;
     justify-content:space-around;
+    margin-top:20px;
 `;
 export const HeaderText = styled.Text`
     fontSize: 24px;
@@ -49,12 +50,12 @@ export default ({showList, showName, showMenu}) => {
                 <HeaderArea>
                     <DropShadow
                         style={{
-                            shadowColor: "rgba(0,0,0,0.2)",
+                            shadowColor: "#000",
                             shadowOffset: {
                             width: 0,
                             height: 0,
                             },
-                            shadowOpacity: 1,
+                            shadowOpacity: 0.3,
                             shadowRadius: 5,
                         }}
                     >  

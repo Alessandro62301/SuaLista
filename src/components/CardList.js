@@ -14,6 +14,7 @@ export const Card = styled.View`
     justify-content: center;
     align-items: center;
     margin-left:10px;
+    margin-top:10px;
 `;
 export const CardDescription = styled.Text`
     fontSize: 14px;
@@ -43,17 +44,17 @@ export default ({today}) => {
     month = month + 1;
 
     return(    
-        // <DropShadow
-        // style={{
-        //     shadowColor: "rgba(0,0,0,0.2)",
-        //     shadowOffset: {
-        //     width: 0,
-        //     height: 0,
-        //     },
-        //     shadowOpacity: 1,
-        //     shadowRadius: 5,
-        // }}
-        // >  
+        <DropShadow
+        style={{
+            shadowColor: "#000",
+            shadowOffset: {
+            width: 0,
+            height: 0,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 5,
+        }}
+        >  
         <Card style={{backgroundColor:todayColors[day]}}>
             <ConteinerText>
                 <CardDescription>A sua Lista de    {todayTitle[day]}</CardDescription>
@@ -61,6 +62,6 @@ export default ({today}) => {
             </ConteinerText>
             <ListIcon width="90" height="130"  style={{marginBottom: 10 , marginRight:-10}} ></ListIcon>
         </Card>
-        // </DropShadow>
+        </DropShadow>
     );
 }
