@@ -70,7 +70,6 @@ export default ({}) => {
         storageList(listTeste)
         console.log('Lista Salva!');
     }
-
     const render = () => { 
         setTotalField(total())
         setTrocoField(balanceField - total())
@@ -79,7 +78,7 @@ export default ({}) => {
     const total = () => {
         var totalTemp = 0;
             list.map(item => {
-                totalTemp = totalTemp +  Math.round(item.price*item.quantity)
+                totalTemp = totalTemp + (item.price*item.quantity)
             })
             // if(totalTemp > balanceField){
             //     alert('Saldo Insuficiente')
@@ -132,10 +131,6 @@ export default ({}) => {
                 setLoading(true)
                 setNameField(teste.name)
 
-                // teste.items.map(item => {
-                //      teste.total = teste.total +  Math.round(item.price*item.quantity);
-                // })
-
                 setBalanceField(teste.balance)
                 setTotalField(teste.total)
                 setTrocoField(teste.balance - teste.total)
@@ -176,9 +171,6 @@ export default ({}) => {
 
 useEffect(()=>{
     renderTela();
-    if(list.length == 0){
-        setShowAddArea(true)
-    }
 }, []);
    
 
