@@ -12,14 +12,14 @@ export const TextTitle = styled.Text`
     fontSize: 20px;
     fontWeight: 700;
     margin-top:150px; 
-
+    color:#000;
 `;
 export const TextParagraph = styled.Text`
     textAlign: center; 
     fontSize: 16px;
     margin-top:20px; 
     margin-bottom:100px; 
-
+    color:#000;
 `;
 export const LoadingIcon = styled.ActivityIndicator`
     margin-top:50px;

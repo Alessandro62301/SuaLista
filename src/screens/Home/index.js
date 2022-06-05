@@ -3,12 +3,11 @@ import { Platform } from 'react-native'
 import { Container , Scroller , AreaDicas  ,HomeArea , TextDicas ,TextDicasBold , ContainerDicas , ContainerDicasText , ContainerIcon , AreaSlick , AreaSlickList ,ContainerScroll , ContainerScrollList} from './styles';
 import FruitsIcon from '../../assets/img/roda.svg'
 import { useNavigation } from '@react-navigation/native';
-import Item from '../../classes/Item'
 import CardItemHome from '../../components/CardItemHome';
 import CardList from '../../components/CardList';
 import HeaderArea from '../../components/HeaderArea';
 import DropShadow from "react-native-drop-shadow";
-
+import AsyncStorage from '@react-native-community/async-storage';
 import IconBanana from '../../assets/img/banna.svg';
 import IconUva from '../../assets/img/Uva.svg';
 import IconMelancia from '../../assets/img/Melancia.svg';
@@ -16,8 +15,6 @@ import IconPessego from '../../assets/img/pessego.svg';
 
 
 export default () => {
-    
-    var item1 = new Item('carne');
     var today = new Date();
     const navigation = useNavigation();
 
@@ -55,7 +52,8 @@ export default () => {
                         <TextDicasBold>Selecione rapidamente produtos</TextDicasBold>
                         <ContainerScroll 
                             indicatorStyle="white"
-                            horizontal>       
+                            horizontal
+                            >       
                             <CardItemHome title={'Banana'} Icon={IconBanana}/>
                             <CardItemHome title={'Uva'} Icon={IconUva}/>
                             <CardItemHome title={'Pessego'} Icon={IconPessego}/>

@@ -4,32 +4,14 @@ import CardItem from '../../components/lista/CardItem';
 import { useNavigation } from '@react-navigation/native';
 import Item from '../../classes/Item';
 import Lista from '../../classes/Lista';
-import ListaIcon from '../../assets/img/add.svg'
+import ListaIcon from '../../assets/img/salvar.svg'
 import AsyncStorage from '@react-native-community/async-storage';
 import InputItem from  '../../components/InputItem';
 import Icon from '../../assets/img/lapis.svg'
 
 
-    // const lista = new Lista('Compra Maio',400,0);
-    // const item = new Item('Arroz',10,1);
-    // const item2 = new Item('Frango',20,5);
-    // const item3 = new Item('Batata',10,5);
-    // const item4 = new Item('lalala',10,5);
-    // const item5 = new Item('lalala',10,5);
-    // const item6 = new Item('lalala',10,5);
-    // const item7 = new Item('lalala',10,5);
-    // const item8 = new Item('lalala',10,5);
-    // lista.setItem(item);
-    // lista.setItem(item2);
-    // lista.setItem(item3);
-    // lista.setItem(item4);
-    // lista.setItem(item5);
-    // lista.setItem(item6);
-    // lista.setItem(item7);
-    // lista.setItem(item8);
-
-export default ({}) => {   
-    var teste =  {};
+export default ({}) => { 
+    var arrayList = [];
     const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [balanceField, setBalanceField] = useState(0);
@@ -41,35 +23,42 @@ export default ({}) => {
     const [nameItem, setNameItem] = useState('');
     const [priceItem, setPriceItem] = useState('');
     const [showAddArea, setShowAddArea] = useState(false);
+    const indexList = 0;
+
+    const goTo = (screenName) => {
+        navigation.navigate(screenName);
+    }
 
     const storageList = async (value) => {
         try {
-        await AsyncStorage.setItem("lista", JSON.stringify(value));
+        await AsyncStorage.setItem("arrayLista", JSON.stringify(value));
         } catch (error) {
         console.log(error);
         }
     }
-    //storageList(lista);
+    //storageList(listas);
     const getList = async () => {
         setLoading(true);
         setList([]);
         try {
-            teste = JSON.parse(await AsyncStorage.getItem("lista"));
-
+            arrayList = JSON.parse(await AsyncStorage.getItem("arrayLista"));
         } catch (error) {
-        console.log(error); 
+            console.log(error); 
         }
         setLoading(false);
 
     }
 
-    const saveList = async () => {
+    const saveList = async (id) => {
         render();
         var listTeste = new Lista(nameField , balanceField , totalField);
         listTeste.items = list;
-        storageList(listTeste)
+
+        arrayList[id] = listTeste;
+        storageList(arrayList)
         console.log('Lista Salva!');
     }
+
     const render = () => { 
         setTotalField(total())
         setTrocoField((balanceField - total()))
@@ -96,84 +85,68 @@ export default ({}) => {
         render();
 
     }
-    const addItem = () => { 
-        
-       
-            if( showAddArea == true && nameItem != ''  && priceItem != ''){
-                
-                if(isNaN(parseFloat(priceItem))){
-                    alert('Preco Invalido');
-                    setPriceItem('')
-                }else{
-                    
-                const item = new Item(nameItem,parseFloat(priceItem));
-                list.push(item);
-                setTotalField(total())
-                setTrocoField(balanceField - total())
-                render();
-                console.log('Item Adicionado' + item);
-                setNameItem('');
-                setPriceItem('')
-                }
 
-               
+    const addItem = () => { 
+        if( showAddArea == true && nameItem != ''  && priceItem != ''){
+            
+            if(isNaN(parseFloat(priceItem))){
+                alert('Preco Invalido');
+                setPriceItem('')
             }else{
-               if(nameItem == '' && priceItem == ''){
-                   setShowAddArea(!showAddArea)
-               }else{
-                   alert('Preencha os campos')
-                   setShowAddArea(true)
-               }
+                
+            const item = new Item(nameItem,parseFloat(priceItem));
+            list.push(item);
+            setTotalField(total())
+            setTrocoField(balanceField - total())
+            render();
+            console.log('Item Adicionado' + item);
+            setNameItem('');
+            setPriceItem('')
             }
+
+            
+        }else{
+            if(nameItem == '' && priceItem == ''){
+                setShowAddArea(!showAddArea)
+            }else{
+                alert('Preencha os campos')
+                setShowAddArea(true)
+            }
+        }
         
     }
     
     const renderTela = () => {
+            
         getList();
-            get = setInterval(() => {
-                if (teste!={}) {
-                setList(teste.items)
-                console.log(teste);
-                setLoading(true)
-                setNameField(teste.name)
 
-                setBalanceField((teste.balance))
-                setTotalField(teste.total)
-                setTrocoField(teste.balance - teste.total)
+        get = setInterval(() => {
+            if(arrayList == null){
+                goTo('CreateList')
+            }else{
+            if (arrayList[indexList] != null) {
+
+                console.log(arrayList);
+                
+                setList(arrayList[indexList].items)
+                setLoading(true)
+                setNameField(arrayList[indexList].name)
+
+                setBalanceField((arrayList[indexList].balance))
+                setTotalField(arrayList[indexList].total)
+                setTrocoField(arrayList[indexList].balance - arrayList[indexList].total)
 
                 clearInterval(get)
 
                 }else{
-                setLoading(false)
+                    setLoading(false)
                 }
-            }, 10)
+            }
+        
+    }, 10)
+
     }
     
-//   React.useEffect(() => {
-//     const unsubscribe = navigation.addListener('focus', () => {
-
-//     });      
-//             getList();
-//              get = setInterval(() => {
-//                  if (teste!={}) {
-//                     setList(teste.items)
-//                     setLoading(true)
-//                     setNameField(teste.name)
-//                     setBalanceField(teste.balance)
-//                     setTotalField(total())
-//                     setTrocoField(balanceField - totalField)
-
-//                     clearInterval(get)
-
-//                  }else{
-//                     setLoading(false)
-//                  }
-//                }, 10)
-
-              
-
-//     return unsubscribe;
-//   }, [navigation]);
 
 useEffect(()=>{
     renderTela();
@@ -186,14 +159,14 @@ useEffect(()=>{
                 <HeaderAreaSaldo>
                     <HeaderAreaText>
                         <HeaderRow>
-                            <HeaderText onPress={()=>saveList()}>Saldo:</HeaderText>
+                            <HeaderText>Saldo:</HeaderText>
                             <HeaderTextGreen>R$ {balanceField}</HeaderTextGreen>
                         </HeaderRow>
                         <AreaNameList>
                             <AreaNameText>Lista : {nameField}</AreaNameText>
                         </AreaNameList>
                     </HeaderAreaText>
-                    <HeaderAreaIcon  onPress={()=>setShowAddArea(!showAddArea)}>
+                    <HeaderAreaIcon  onPress={()=>saveList(indexList)}>
                         <ListaIcon width="35" height="35" fill="#F96C00"/>
                     </HeaderAreaIcon>
                 </HeaderAreaSaldo>

@@ -4,23 +4,66 @@ import { useNavigation } from '@react-navigation/native';
 import HeaderArea from '../../components/HeaderArea';
 import SingInput from '../../components/SingInput';
 import Icon from '../../assets/img/nav_next.svg'
-
+import AsyncStorage from '@react-native-community/async-storage';
+import Lista from '../../classes/Lista'
 
 export default ({}) => {
+    var arrayList = [];
     const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [valueField, setValueField] = useState();
-    
+    //AsyncStorage.clear('arraylist')
     const goTo = (screenName) => {
-        navigation.navigate(screenName , {name : nameField , balance : valueField});
+        navigation.navigate(screenName);
     }
+
+    const storageList = async (value) => {
+        try {
+        await AsyncStorage.setItem("arrayLista", JSON.stringify(value));
+        } catch (error) {
+        console.log(error);
+        }
+    }
+
     const CreateList = () => {
         if(nameField != '' & valueField != null){
+            var listTeste = new Lista(nameField , valueField , 0);
+            listTeste.items = [];
+    
+            arrayList.push(listTeste);
+            storageList(arrayList)
+            console.log('Lista Salva!');
             goTo('Lista');
         }else{
             alert('Preencha os Campos')
         }
     }
+    const getList = async () => {
+        try {
+            arrayList = JSON.parse(await AsyncStorage.getItem("arrayLista"));
+        } catch (error) {
+            console.log(error); 
+        }
+    }
+
+    const renderTela = () => {
+        getList();
+             get = setInterval(() => {
+                if (arrayList != null) {
+                    goTo('Lista');
+                    clearInterval(get)
+                }else{
+                    clearInterval(get)
+                }
+            }, 10)
+    }
+
+    React.useEffect(() => {
+     const unsubscribe = navigation.addListener('focus', () => {
+        renderTela()
+     });          
+     return unsubscribe;
+   }, [navigation]);
 
     return(
         <Container>

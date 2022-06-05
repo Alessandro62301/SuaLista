@@ -19,15 +19,15 @@ export const AreaDicas = styled.View`
     margin-top:30px;
 `;
 export const TextDicas = styled.Text`
-    fontSize: 18px;
+    font-size: 18px;
     color: #000;
     margin-bottom:25px;
 `;
 export const TextDicasBold = styled.Text`
-    fontSize: 18px;
+    font-size: 18px;
     color: #000;
     margin-bottom:25px;
-    fontWeight: 600;
+    font-weight: 600;
 `;
 export const ContainerDicas = styled.View`
     height: 135px;
@@ -52,16 +52,14 @@ export const ContainerIcon = styled.View`
 export const AreaSlick = styled.View`
     height: 190px;
     padding: 10px 30px;
+
 `;
 export const AreaSlickList = styled.View`
     height: 230px;
     padding: 10px 30px;
 `;
 export const ContainerScroll = styled.ScrollView`
-    flex-direction:row;
     margin-left:-10px;
-    height: 110px;
-    background: transparent;
 `;
 export const ContainerScrollList = styled.ScrollView`
     flex-direction:row;

@@ -11,13 +11,12 @@ export const Card = styled.View`
     justify-content: center;
     align-items: center;
     margin-left:10px;
-    margin-top:10px;
 `;
 export const CardTitle = styled.Text`
     fontSize: 16px;
     fontWeight: 700;
     margin-top:10px;
-
+    color:#000;
 `;
 
 
@@ -32,7 +31,7 @@ export default ({title , Icon}) => {
             height: 0,
             },
             shadowOpacity: 0.3,
-            shadowRadius: 5,
+            shadowRadius: 3,
         }}
         >  
         <Card>

@@ -20,6 +20,7 @@ export const AreaContent = styled.View`
 export const AreaText = styled.Text`
     fontSize: 25px;
     fontWeight: 700;
+    color:#000;
 `;
 export const AreaInput = styled.View` 
     align-items: center;

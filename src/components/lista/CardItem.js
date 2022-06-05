@@ -9,8 +9,7 @@ import PencilIcon from '../../assets/img/lapis.svg'
 
 
 export const Card = styled.View`
-    width: 100%;
-    height: 78px
+    height: 78px;
     border-radius:8px;
     background: #fff;
     flex-direction:row;
@@ -19,14 +18,16 @@ export const Card = styled.View`
     margin-top: 15px;
 `;
 export const TextBold = styled.Text`
-    fontSize: 18px;
-    fontWeight: 700;
+    font-size: 18px;
+    font-weight: 700;
+    color:#000;
 `;
 export const TextDesc = styled.Text`
-    fontSize: 16px;
-    fontWeight: 700;
+    font-size: 16px;
+    font-weight: 700;
     width: 140px;
     height: 20px;
+    color:#000;
 `;
 export const TextArea = styled.View`
     justify-content: center;
@@ -63,15 +64,16 @@ export const AddArea = styled.View`
     border-radius:8px;
 `;
 export const CheckArea = styled.TouchableOpacity`
-    height: 100%
+    height: 100%;
     justify-content: center;
+    align-items:center;
 `;
 export const Check = styled.View`
     width: 30px;
     height: 30px;
     border: 1px solid #000;
     border-radius:8px;
-    margin-marginLeft: : 20px;
+    margin-left: 20px;
 `;
 
 export default ({item , clickFnAdd , remove}) => {
@@ -119,8 +121,10 @@ export default ({item , clickFnAdd , remove}) => {
               height: 0,
             },
             shadowOpacity: 0.3,
-            shadowRadius: 5,
-            opacity:statusCheck===true? 0.2 : 1
+            shadowRadius: 3,
+            opacity:statusCheck===true? 0.2 : 1,
+            paddingLeft:6,
+            paddingRight:6,
           }}
         >  
             <Card>
@@ -142,6 +146,7 @@ export default ({item , clickFnAdd , remove}) => {
                 </AddArea>
                 <CheckArea onPress={()=>handleCheck()}>
                     <Check>
+                        {statusCheck===true? <CloseIcon width="28" height="28"></CloseIcon> : <></>}
                     </Check>
                 </CheckArea>
                 <CloseArea onPress={()=>handleClose()}>

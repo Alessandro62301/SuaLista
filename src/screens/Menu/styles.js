@@ -14,9 +14,10 @@ export const HeaderArea = styled.SafeAreaView`
     height: 60px;
     width: 100%;
     flex-direction:row;
-    alignItems: center;
+    align-items: center;
     justify-content:flex-start;
     margin-left:30px;
+    margin-top:20px;
 `;
 
 export const BaseIconMenu = styled.TouchableOpacity`
@@ -24,16 +25,17 @@ export const BaseIconMenu = styled.TouchableOpacity`
     height: 60px;
     background-color:#ffffff; 
     border-radius:8px;
-    alignItems: center;
+    align-items: center;
     justify-content: center;
 `;
 export const MenuArea = styled.SafeAreaView`
     margin-top:46px; 
 `;
 export const MenuTextTitle = styled.Text`
-    fontWeight: 700;
-    fontSize: 40px;
+    font-weight: 700;
+    font-size: 40px;
     margin-left:40px;
+    color:#000;
 `;
 export const BaseItemMenu = styled.View`
     margin-top:64px; 
@@ -46,8 +48,9 @@ export const ItemMenu = styled.TouchableOpacity`
     margin-bottom:28px;
 `;
 export const ItemMenuText = styled.Text`
-    fontSize: 20px;
+    font-size: 20px;
     margin-left:40px;
+    color:#000;
 `;
 export const BaseFooter = styled.SafeAreaView`
     background-color:#F3F3F3;
@@ -75,11 +78,13 @@ export const AreaPremiunText = styled.Text`
     fontSize: 16px;
     margin-bottom: 8px;
     margin-left:30px;
+    color:#000;
 `;
 export const AreaPremiunTextBold = styled.Text`
     fontSize: 16px;
     fontWeight: 700;
     margin-left:30px;
+    color:#000;
 `;
 export const AreaLogin = styled.TouchableOpacity`
     height: 150px;
