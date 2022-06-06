@@ -21,7 +21,7 @@ export default () => {
             if(token){
                 //Validar Token
             }else{
-                navigation.navigate('MainTab')
+                navigation.navigate('SingIn')
             }
         }
         checkToken();
@@ -33,7 +33,7 @@ export default () => {
         <TextTitle>{titleRender}</TextTitle>
         <TextParagraph>{ParagraphRender}</TextParagraph>
         <PreloadSvg width="300" height="300"/>
-        <LoadingIcon size="large" color="#F96C00"/>
+        <LoadingIcon size="large" color="#006CF9"/>
     </Container>
     );
   

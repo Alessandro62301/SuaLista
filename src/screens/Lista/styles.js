@@ -26,19 +26,19 @@ export const HeaderRow = styled.Text`
     width: 250px;
 `;
 export const AreaNameText = styled.Text`
-    fontSize: 20px;
-    fontWeight: 700;
-    color: #F96C00;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
 `;
-export const HeaderTextGreen = styled.Text`
-    fontSize: 25px;
-    fontWeight: 700;
+export const HeaderTextGreen = styled.TextInput`
+    font-size: 25px;
+    font-weight: 700;
     color: #2FA776;
     margin-left:20px;
 `;
 export const HeaderText = styled.Text`
-    fontSize: 25px;
-    fontWeight: 700;
+    font-size: 25px;
+    font-weight: 700;
     color: #000; 
 `;
 
@@ -64,7 +64,7 @@ export const AreaAddItem = styled.View`
 export const AreaTotal = styled.View`
     width: 100%;
     height: 50px;
-    background: #F96C00;
+    background: #006CF9;
     align-items: center;
     justify-content: center;
 `;
@@ -74,9 +74,9 @@ export const Rows = styled.View`
     justify-content: space-between;
 `;
 export const AreaTotalText = styled.Text`
-    fontSize: 18px;
+    font-size: 18px;
     color: #fff;
-    fontWeight: 700;
+    font-weight: 700;
 `;
 export const RowStyled = styled.View`
     width: 100%;
@@ -98,16 +98,16 @@ export const LoadingIcon = styled.ActivityIndicator`
 `;
 export const CustomButton = styled.TouchableOpacity`
     height: 40px;
-    background-color:#F96C00; 
+    background-color:#006CF9; 
     border-radius:8px;
-    justifyContent: center;
-    alignItems: center;
+    justify-content: center;
+    align-items: center;
     margin-top:15px;
 `;
 export const CustomButtonText = styled.Text`
-    fontSize: 18px;
+    font-size: 18px;
     color: #fff;
-    fontWeight: 700;
+    font-weight: 700;
 `;
 export const ContainerInput = styled.View`
     padding: 0 30px;

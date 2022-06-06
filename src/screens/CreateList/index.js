@@ -12,7 +12,7 @@ export default ({}) => {
     const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [valueField, setValueField] = useState();
-    //AsyncStorage.clear('arraylist')
+    // AsyncStorage.clear('arraylist',()=>{})
     const goTo = (screenName) => {
         navigation.navigate(screenName);
     }

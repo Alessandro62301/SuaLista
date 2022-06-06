@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator  } from '@react-navigation/bottom-tabs';
 
 import Home from '../screens/Home';
 import Rascunho from '../screens/Rascunho';
@@ -10,16 +10,19 @@ import CustomTabBar from '../components/CustomTabBar';
 import CreateList from '../screens/CreateList'
 
 const Tab = createBottomTabNavigator();
-export default ({state})=> {
+
+export default ()=> {
 
     return (
         <Tab.Navigator 
         initialRouteName="Home"
-        screenOptions={{
-            headerShown:false
-        }}
         backBehavior={'history'}
-        tabBar={props=><CustomTabBar {...props} />}
+        screenOptions={{
+            headerShown:false,
+        }}
+        
+
+        tabBar={props=><CustomTabBar {...props}/>}
         >
             <Tab.Screen  name="Home" component={Home} />
             <Tab.Screen  name="Rascunho" component={Rascunho} />

@@ -1,4 +1,5 @@
 import React , { useState , useEffect} from 'react';
+import { Keyboard } from 'react-native';
 import { Container , HeaderAreaSaldo, HeaderText, HeaderTextGreen , Scroller , AreaNameList , AreaNameText , HeaderAreaIcon , HeaderAreaText,  AreaTotal ,AreaTotalText, Rows, RowStyled, AreaCard , Wrapper, ContainerCenter , LoadingIcon, HeaderRow , CustomButton ,CustomButtonText , ContainerInput} from './styles';
 import CardItem from '../../components/lista/CardItem';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +9,8 @@ import ListaIcon from '../../assets/img/salvar.svg'
 import AsyncStorage from '@react-native-community/async-storage';
 import InputItem from  '../../components/InputItem';
 import Icon from '../../assets/img/lapis.svg'
-
+import InputBalance from '../../components/InputBalance';
+import Colors from '../../components/Function'
 
 export default ({}) => { 
     var arrayList = [];
@@ -19,7 +21,7 @@ export default ({}) => {
     const [trocoField, setTrocoField] = useState(0);
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
-    const [showTotal, setShowTotal] = useState(true);
+    const [showTotal, setShowTotal] = useState(false);
     const [nameItem, setNameItem] = useState('');
     const [priceItem, setPriceItem] = useState('');
     const [showAddArea, setShowAddArea] = useState(false);
@@ -57,6 +59,7 @@ export default ({}) => {
         arrayList[id] = listTeste;
         storageList(arrayList)
         console.log('Lista Salva!');
+        alert('Lista Salva!');
     }
 
     const render = () => { 
@@ -125,13 +128,13 @@ export default ({}) => {
                 goTo('CreateList')
             }else{
             if (arrayList[indexList] != null) {
-
+                setLoading(true)
                 console.log(arrayList);
                 
                 setList(arrayList[indexList].items)
-                setLoading(true)
+                
                 setNameField(arrayList[indexList].name)
-
+                setShowTotal(true);
                 setBalanceField((arrayList[indexList].balance))
                 setTotalField(arrayList[indexList].total)
                 setTrocoField(arrayList[indexList].balance - arrayList[indexList].total)
@@ -146,28 +149,58 @@ export default ({}) => {
     }, 10)
 
     }
+
+    const changeBalance = (t) => {
+        if(t === ''|| t == null){
+            setBalanceField(0)
+        }else{
+            setBalanceField(parseFloat(t))
+        }
+    }
+
+    const keyboardView = () => {
+        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+            setShowTotal(false);
+        });
+        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+            setShowTotal(true);
+        });
+
+        return () => {
+            showSubscription.remove();
+            hideSubscription.remove();
+        };
+    }
     
 
 useEffect(()=>{
     renderTela();
+    keyboardView();
 }, []);
    
 
     return(
+         
         <Container>
+            {loading&&
+            <>
             <ContainerCenter>
                 <HeaderAreaSaldo>
                     <HeaderAreaText>
                         <HeaderRow>
-                            <HeaderText>Saldo:</HeaderText>
-                            <HeaderTextGreen>R$ {balanceField}</HeaderTextGreen>
+                            <HeaderText>Saldo: <HeaderTextGreen>R$</HeaderTextGreen></HeaderText>
+                            <InputBalance
+                                value={String(balanceField)}
+                                onChangeText={t=>changeBalance(t)}
+                                Icon={Icon}
+                                />
                         </HeaderRow>
                         <AreaNameList>
                             <AreaNameText>Lista : {nameField}</AreaNameText>
                         </AreaNameList>
                     </HeaderAreaText>
                     <HeaderAreaIcon  onPress={()=>saveList(indexList)}>
-                        <ListaIcon width="35" height="35" fill="#F96C00"/>
+                        <ListaIcon width="35" height="35" fill="#2FA776"/>
                     </HeaderAreaIcon>
                 </HeaderAreaSaldo>
             </ContainerCenter>
@@ -175,7 +208,7 @@ useEffect(()=>{
                 
                 <ContainerInput>
                
-                    {showAddArea==true? 
+                    {showAddArea&& 
                     <>
                         <InputItem 
                         IconSvg={Icon}
@@ -188,43 +221,42 @@ useEffect(()=>{
                         placeholder="Preco do Produto"
                         value={priceItem}
                         onChangeText={t=>setPriceItem(t)}
-                        keyboardType = 'number-pad'
-                        textContentType = {'telephoneNumber'} /> 
+                        keyboardType="numeric"
+                       /> 
                     </>
-                    : <></> }
+                    }
                         
                     <CustomButton onPress={addItem}>
                         <CustomButtonText>Adicionar</CustomButtonText>
                     </CustomButton>
                 </ContainerInput>
-            
+                </>
+            }
             <Scroller endFillColor="#fff" indicatorStyle="white">
 
                 <AreaCard>
-                {loading===false?  <LoadingIcon size="large" color="#F96C00" /> : 
+                {loading===false?  <LoadingIcon size="large" color="#006CF9" /> : 
                 list.map(item => ( <CardItem item={item} key={item.id} clickFnAdd={render} remove={removeItem}></CardItem> ))
                 }
                 </AreaCard>
 
             </Scroller>
                 
-            {loading===false? 
-            <></>
-            : <Wrapper style={{position: 'absolute' , bottom: 0 , opacity: showTotal == true? 1 : 0}}>
+            {loading&& 
+            showTotal&&<Wrapper style={{position: 'absolute' , bottom: 0}}>
             <AreaTotal style={{borderTopRightRadius: 14 , borderTopLeftRadius: 14}}>
             <Rows>
                 <AreaTotalText>Total:</AreaTotalText><AreaTotalText>R$ {(totalField).toFixed(2)}</AreaTotalText>
             </Rows>
             </AreaTotal>
             <RowStyled></RowStyled>
-            <AreaTotal style={{backgroundColor: trocoField<0? '#fff' : '#F96C00' , borderBottomRightRadius: 14 , borderBottomLeftRadius: 14}}>
+            <AreaTotal style={{backgroundColor: trocoField<0? '#fff' : '#006CF9' , borderBottomRightRadius: 14 , borderBottomLeftRadius: 14}}>
             <Rows>
                 <AreaTotalText style={{color: trocoField<0? '#f00' : '#fff'}}>Saldo de Troco:</AreaTotalText>
                     <AreaTotalText style={{color: trocoField<0? '#f00' : '#fff'}}>R$ {(trocoField).toFixed(2)}</AreaTotalText> 
             </Rows>
             </AreaTotal>
             </Wrapper>
-                
             }
         </Container>
     );

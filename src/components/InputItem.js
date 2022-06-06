@@ -8,26 +8,26 @@ const InputArea = styled.View`
     flex-direction: row;
     border-radius:8px; 
     margin-top:15px;
-    alignItems: center;
+    align-items: center;
 `;
 const Input = styled.TextInput`
     flex: 1;
-    fontSize: 16px;
-    color: #F96C00;
+    font-size: 16px;
+    color: #006CF9;
     margin-left:10px;
 `;
 
-export default ({IconSvg , placeholder ,value , onChangeText ,password}) => {
+export default ({IconSvg , placeholder ,value , onChangeText ,keyboardType}) => {
     return (
         <InputArea>
             <Input 
             placeholder={placeholder}
-            placeholderTextColor="#666"
+            placeholderTextColor="#000"
             value={value}
             onChangeText={onChangeText}
-            secureTextEntry={password}
+            keyboardType={keyboardType}
             />
-            <IconSvg  width="16" height="16" fill="#F96C00" style={{marginRight:16}}/>
+            <IconSvg  width="16" height="16" fill="#006CF9" style={{marginRight:16}}/>
         </InputArea>
     );
 }

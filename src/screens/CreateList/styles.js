@@ -35,7 +35,7 @@ export const AreaButton = styled.View`
 export const ButtonVoltar = styled.TouchableOpacity` 
     width: 130px;
     height: 60px;
-    border: 2px solid #F96C00;
+    border: 2px solid #006CF9;
     border-radius:8px;  
     align-items: center;
     justify-content: center;
@@ -43,7 +43,7 @@ export const ButtonVoltar = styled.TouchableOpacity`
 export const ButtonCriar = styled.TouchableOpacity` 
     width: 180px;
     height: 60px;
-    background: #F96C00;
+    background: #006CF9;
     border-radius:8px; 
     flex-direction:row;
     align-items: center;
@@ -55,7 +55,7 @@ export const ButtonTextWhite = styled.Text`
     fontWeight: 700;
 `;
 export const ButtonTextOrange = styled.Text` 
-    color: #F96C00;
+    color: #006CF9;
     fontSize: 18px;
     fontWeight: 700;
 `;

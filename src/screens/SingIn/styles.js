@@ -16,7 +16,7 @@ export const InputArea = styled.View`
 `;
 export const CustomButton = styled.TouchableOpacity`
     height: 60px;
-    background-color:#F96C00; 
+    background-color:#006CF9; 
     border-radius:8px;
     justifyContent: center;
     alignItems: center;
@@ -40,7 +40,7 @@ export const SingMessageButtonText = styled.Text`
 `;
 export const SingMessageButtonTextBold = styled.Text`
     fontSize: 16px;
-    color: #F96C00;
+    color: #006CF9;
     fontWeight: 700;
     
 `;

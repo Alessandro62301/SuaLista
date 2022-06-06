@@ -1,8 +1,9 @@
 import React ,{ useState } from "react";
 import styled from 'styled-components';
 import DropShadow from "react-native-drop-shadow";
-
+import InputPriceItem from "./InputPriceItem";
 import CloseIcon from '../../assets/img/closeItem.svg'
+import CheckIcon from '../../assets/img/salvar.svg'
 import AddIcon from '../../assets/img/mais.svg'
 import RemoveIcon from '../../assets/img/menos.svg'
 import PencilIcon from '../../assets/img/lapis.svg'
@@ -28,6 +29,7 @@ export const TextDesc = styled.Text`
     width: 140px;
     height: 20px;
     color:#000;
+    margin:1px;
 `;
 export const TextArea = styled.View`
     justify-content: center;
@@ -74,6 +76,8 @@ export const Check = styled.View`
     border: 1px solid #000;
     border-radius:8px;
     margin-left: 20px;
+    justify-content: center;
+    align-items:center;
 `;
 
 export default ({item , clickFnAdd , remove}) => {
@@ -81,6 +85,8 @@ export default ({item , clickFnAdd , remove}) => {
 
     const [statusCheck,setStatusCheck] = useState(item.status);
     const [quantityState,setQuantity] = useState(item.quantity);
+    const [price,setPrice] = useState(item.price);
+    let teste = '';
 
 
     const handleCheck = () => {
@@ -102,15 +108,18 @@ export default ({item , clickFnAdd , remove}) => {
         setQuantity(item.quantity)
         console.log(item.quantity);
         clickFnAdd()
-
     }
+
     const handleClose = () => {
         remove(item.id);
     }
+    const changePrice = (t) => {
+        setPrice(t)
+        item.price = parseFloat(t);
+        clickFnAdd()
 
-    setTimeout(()=>{
-        setQuantity(item.quantity);
-    },300)
+    }
+
 
     return(    
         <DropShadow
@@ -130,10 +139,14 @@ export default ({item , clickFnAdd , remove}) => {
             <Card>
                 <TextArea>
                     <PriceArea>
-                        <TextBold>R${item.price}</TextBold>
-                        <PencilIcon style={{marginLeft: 10}}></PencilIcon>
+                        <TextBold>R$</TextBold>
+                        <InputPriceItem 
+                            value={String(price)}
+                            onChangeText={(t)=>changePrice(String(t))}
+                        />
+                        <PencilIcon style={{marginLeft: 5}}></PencilIcon>
                     </PriceArea>
-                    <TextDesc>{item.name}</TextDesc>
+                    <TextDesc>{item.name[0].toUpperCase() + item.name.substring(1)}</TextDesc>
                 </TextArea>
                 <AddArea>
                     <ButtonArea onPress={()=>handleRemove()}>
@@ -146,7 +159,7 @@ export default ({item , clickFnAdd , remove}) => {
                 </AddArea>
                 <CheckArea onPress={()=>handleCheck()}>
                     <Check>
-                        {statusCheck===true? <CloseIcon width="28" height="28"></CloseIcon> : <></>}
+                        {statusCheck===true? <CheckIcon width="24" height="24" fill="#F96C00"></CheckIcon> : <></>}
                     </Check>
                 </CheckArea>
                 <CloseArea onPress={()=>handleClose()}>

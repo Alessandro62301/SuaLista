@@ -1,6 +1,6 @@
-import React from "react";
+import React , { useEffect, useState }from "react";
+import { Keyboard } from 'react-native';
 import styled from "styled-components";
-
 import HomeIcon from '../assets/img/home.svg'
 import RascunhoIcon from '../assets/img/lista.svg'
 import ListaIcon from '../assets/img/carrinho.svg'
@@ -16,8 +16,8 @@ const TabArea = styled.View`
 `;
 const TabItem = styled.TouchableOpacity`
     flex: 1;
-    justifyContent: center;
-    alignItems: center;
+    justify-content: center;
+    align-items: center;
 `;
 
 export default ({state , navigation }) => {
@@ -26,8 +26,24 @@ export default ({state , navigation }) => {
     const goTo = (screenName) => {
         navigation.navigate(screenName);
     }
+    const [visible, setVisible] = useState(true);
 
-    return (
+    useEffect(() => {
+        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+            //Whenever keyboard did show make it don't visible
+            setVisible(false);
+        });
+        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+            setVisible(true);
+        });
+
+        return () => {
+            showSubscription.remove();
+            hideSubscription.remove();
+        };
+    }, []);
+
+    return  visible &&(
         <DropShadow
         style={{
             shadowColor: "#000",
@@ -41,16 +57,16 @@ export default ({state , navigation }) => {
         > 
         <TabArea style={{display: state.index===4? "none" : "flex"}} >
             <TabItem onPress={()=>goTo('Home')}>
-                <HomeIcon  style={{opacity: state.index===0? 1 : 0.7}} width="28" height="28" fill="#F96C00" />
+                <HomeIcon  style={{opacity: state.index===0? 1 : 0.7}} width="28" height="28" fill="#006CF9" />
             </TabItem>
             <TabItem onPress={()=>goTo('Rascunho')}>
-                <RascunhoIcon style={{opacity: state.index===1? 1 : 0.7}}  width="28" height="28" fill="#F96C00" />
+                <RascunhoIcon style={{opacity: state.index===1? 1 : 0.7}}  width="28" height="28" fill="#006CF9" />
             </TabItem>
             <TabItem onPress={()=>goTo(verifyList===null? 'CreateList' : 'Lista')}>
-                <ListaIcon style={{opacity: state.index===2? 1 : 0.7}}  width="28" height="28" fill="#F96C00"/>
+                <ListaIcon style={{opacity: state.index===2? 1 : 0.7}}  width="28" height="28" fill="#006CF9"/>
             </TabItem>
             <TabItem onPress={()=>goTo('Historico')}>
-                <HistoricoIcon style={{opacity: state.index===3? 1 : 0.7}} width="28" height="28" fill="#F96C00"/>
+                <HistoricoIcon style={{opacity: state.index===3? 1 : 0.7}} width="28" height="28" fill="#006CF9"/>
             </TabItem>
         </TabArea>
         </DropShadow>
