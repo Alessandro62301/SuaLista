@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native'
 import styled from 'styled-components/native';
 
 const InputArea = styled.View`
@@ -17,7 +18,7 @@ const Input = styled.TextInput`
     font-size: 25px;
     font-weight: 700;
     padding:0;
-    margin-bottom:-7px;
+    margin-bottom:${Platform.OS=='ios'? '-3px' : '-7px'};
 `;
 
 export default ({ value , onChangeText,Icon }) => {
@@ -30,7 +31,7 @@ export default ({ value , onChangeText,Icon }) => {
             keyboardType="numeric"
             maxLength={6}
             />
-            <Icon width="16" height="16" style={{marginLeft:5}}></Icon>
+            <Icon width="16" height="16" style={{marginLeft:0 , marginBottom: Platform.OS=='ios'? 5 : 0}}></Icon>
         </InputArea>
     );
 }

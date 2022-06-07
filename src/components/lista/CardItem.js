@@ -50,7 +50,7 @@ export const ButtonArea = styled.TouchableOpacity`
     background: #fff;
     border-radius:8px;
 `;
-export const CloseArea = styled.TouchableOpacity`
+export const CloseArea = styled.View`
     justify-content:flex-start;
     align-items: flex-start;
     width: 20px;
@@ -162,8 +162,8 @@ export default ({item , clickFnAdd , remove}) => {
                         {statusCheck===true? <CheckIcon width="24" height="24" fill="#F96C00"></CheckIcon> : <></>}
                     </Check>
                 </CheckArea>
-                <CloseArea onPress={()=>handleClose()}>
-                    <CloseIcon width="20" height="20"></CloseIcon>
+                <CloseArea>
+                    <CloseIcon width="20" height="20" onPress={()=>handleClose()} ></CloseIcon>
                 </CloseArea>
             </Card>
         </DropShadow>

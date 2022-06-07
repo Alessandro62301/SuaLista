@@ -5,7 +5,7 @@ platform :ios, '11.0'
 install! 'cocoapods', :deterministic_uuids => false
 
 permissions_path = '../node_modules/react-native-permissions/ios'
-pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera.podspec"
+pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
 
 target 'sualista2' do
   config = use_native_modules!
