@@ -57,16 +57,16 @@ export default ({state , navigation }) => {
         > 
         <TabArea style={{display: state.index===4? "none" : "flex"}} >
             <TabItem onPress={()=>goTo('Home')}>
-                <HomeIcon  style={{opacity: state.index===0? 1 : 0.7}} width="28" height="28" fill="#006CF9" />
+                <HomeIcon width="28" height="28" fill={ state.index===0? '#006CF9' : '#666'} />
             </TabItem>
             <TabItem onPress={()=>goTo('Rascunho')}>
-                <RascunhoIcon style={{opacity: state.index===1? 1 : 0.7}}  width="28" height="28" fill="#006CF9" />
+                <RascunhoIcon   width="28" height="28" fill={ state.index===1? '#006CF9' : '#666'}/>
             </TabItem>
             <TabItem onPress={()=>goTo(verifyList===null? 'CreateList' : 'Lista')}>
-                <ListaIcon style={{opacity: state.index===2? 1 : 0.7}}  width="28" height="28" fill="#006CF9"/>
+                <ListaIcon width="28" height="28" fill={ state.index===2? '#006CF9' : '#666'}/>
             </TabItem>
             <TabItem onPress={()=>goTo('Historico')}>
-                <HistoricoIcon style={{opacity: state.index===3? 1 : 0.7}} width="28" height="28" fill="#006CF9"/>
+                <HistoricoIcon  width="28" height="28" fill={ state.index===3? '#006CF9' : '#666'}/>
             </TabItem>
         </TabArea>
         </DropShadow>

@@ -31,7 +31,7 @@ export const TextDicasBold = styled.Text`
 `;
 export const ContainerDicas = styled.View`
     height: 135px;
-    background: rgb(255,241,173);
+    background: #ADE1FF;
     flex-direction:row;
     justify-content:space-between;
     align-items:space-between;

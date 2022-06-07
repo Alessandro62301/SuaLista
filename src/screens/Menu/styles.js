@@ -44,7 +44,7 @@ export const ItemMenu = styled.TouchableOpacity`
     flex-direction:row;
     align-items:center;
     height: 30px;
-    margin-left:60px
+    margin-left:60px;
     margin-bottom:28px;
 `;
 export const ItemMenuText = styled.Text`
@@ -58,7 +58,7 @@ export const BaseFooter = styled.SafeAreaView`
 export const AreaPremiun = styled.TouchableOpacity`
     width: 100%;
     height: 120px;
-    background-color:#FFDEAD;
+    background-color:#ADE1FF;
     flex-direction:row;
     aling-items:center;
     justify-content: center;
@@ -72,17 +72,17 @@ export const AreaPemiumSvg = styled.View`
     width: 33%;
     flex-direction:row;
     justify-content: center;
-    alignItems: center;
+    align-items: center;
 `;
 export const AreaPremiunText = styled.Text`
-    fontSize: 16px;
+    font-size: 16px;
     margin-bottom: 8px;
     margin-left:30px;
     color:#000;
 `;
 export const AreaPremiunTextBold = styled.Text`
-    fontSize: 16px;
-    fontWeight: 700;
+    font-size: 16px;
+    font-weight: 700;
     margin-left:30px;
     color:#000;
 `;
