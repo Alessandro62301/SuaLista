@@ -114,8 +114,11 @@ export default ({item , clickFnAdd , remove}) => {
         remove(item.id);
     }
     const changePrice = (t) => {
-        setPrice(t)
+        t = (t).replace(',','.');
+
+        setPrice(String(t))
         item.price = parseFloat(t);
+        console.log(t);
         clickFnAdd()
 
     }
@@ -142,7 +145,7 @@ export default ({item , clickFnAdd , remove}) => {
                         <TextBold>R$</TextBold>
                         <InputPriceItem 
                             value={String(price)}
-                            onChangeText={(t)=>changePrice(String(t))}
+                            onChangeText={(t)=>changePrice(t)}
                         />
                         <PencilIcon style={{marginLeft: 5}}></PencilIcon>
                     </PriceArea>
