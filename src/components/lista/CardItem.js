@@ -114,13 +114,17 @@ export default ({item , clickFnAdd , remove}) => {
         remove(item.id);
     }
     const changePrice = (t) => {
+
+        if(t[0] == '.' || t[0] == ','){
+            return;
+        }
         t = (t).replace(',','.');
 
-        setPrice(String(t))
-        item.price = parseFloat(t);
+        setPrice(t)
+        t==''? item.price = 0  : item.price = parseFloat(t)
         console.log(t);
         clickFnAdd()
-
+    
     }
 
 
@@ -147,7 +151,7 @@ export default ({item , clickFnAdd , remove}) => {
                             value={String(price)}
                             onChangeText={(t)=>changePrice(t)}
                         />
-                        <PencilIcon style={{marginLeft: 5}}></PencilIcon>
+                        {/* <PencilIcon style={{marginLeft: 5}}></PencilIcon> */}
                     </PriceArea>
                     <TextDesc>{item.name[0].toUpperCase() + item.name.substring(1)}</TextDesc>
                 </TextArea>

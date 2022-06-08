@@ -1,5 +1,5 @@
 import React , { useState , useEffect} from 'react';
-import { Keyboard } from 'react-native';
+import { Keyboard , StatusBar } from 'react-native';
 import { Container , HeaderAreaSaldo, HeaderText, HeaderTextGreen , Scroller , AreaNameList , AreaNameText , HeaderAreaIcon , HeaderAreaText,  AreaTotal ,AreaTotalText, Rows, RowStyled, AreaCard , Wrapper, ContainerCenter , LoadingIcon, HeaderRow , CustomButton ,CustomButtonText , ContainerInput} from './styles';
 import CardItem from '../../components/lista/CardItem';
 import { useNavigation } from '@react-navigation/native';
@@ -150,12 +150,21 @@ export default ({}) => {
 
     }
 
-    const changeBalance = (t) => {
-        if(t === ''|| t == null){
-            setBalanceField(0)
-        }else{
-            setBalanceField(parseFloat(t))
+    // const changeBalance = (t) => {
+    //     if(t === ''|| t == null){
+    //         setBalanceField(0)
+    //     }else{
+    //         setBalanceField(parseFloat(t))
+    //     }
+    //     console.log(t);   
+    // }
+
+    const changePriceItem = (t) => {
+        if(t[0] == '.' || t[0] == ','){
+            return;
         }
+        t = (t).replace(',','.');
+        setPriceItem(t)
     }
 
     const keyboardView = () => {
@@ -180,7 +189,6 @@ useEffect(()=>{
    
 
     return(
-         
         <Container>
             {loading&&
             <>
@@ -191,7 +199,7 @@ useEffect(()=>{
                             <HeaderText>Saldo: <HeaderTextGreen>R$</HeaderTextGreen></HeaderText>
                             <InputBalance
                                 value={String(balanceField)}
-                                onChangeText={t=>changeBalance(t)}
+                                onChangeText={t=>setBalanceField(parseFloat(t))}
                                 Icon={Icon}
                                 />
                         </HeaderRow>
@@ -204,7 +212,6 @@ useEffect(()=>{
                     </HeaderAreaIcon>
                 </HeaderAreaSaldo>
             </ContainerCenter>
-
                 
                 <ContainerInput>
                
@@ -220,8 +227,9 @@ useEffect(()=>{
                         IconSvg={Icon}
                         placeholder="Preco do Produto"
                         value={priceItem}
-                        onChangeText={t=>setPriceItem(t)}
+                        onChangeText={t=>changePriceItem(t)}
                         keyboardType="numeric"
+                        maxLength={4}
                        /> 
                     </>
                     }
@@ -239,6 +247,7 @@ useEffect(()=>{
                 list.map(item => ( <CardItem item={item} key={item.id} clickFnAdd={render} remove={removeItem}></CardItem> ))
                 }
                 </AreaCard>
+            
 
             </Scroller>
                 

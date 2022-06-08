@@ -19,7 +19,7 @@ const Input = styled.TextInput`
     color:#000;
 `;
 
-export default ({ value , onChangeText, Icon }) => {
+export default ({ value , onChangeText }) => {
     return (
         <InputArea>
             <Input 

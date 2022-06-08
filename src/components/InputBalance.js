@@ -21,7 +21,7 @@ const Input = styled.TextInput`
     margin-bottom:${Platform.OS=='ios'? '-3px' : '-7px'};
 `;
 
-export default ({ value , onChangeText,Icon }) => {
+export default ({ value , onChangeText , Icon }) => {
     return (
         <InputArea>
             <Input 
@@ -29,9 +29,9 @@ export default ({ value , onChangeText,Icon }) => {
             value={value}
             onChangeText={onChangeText}
             keyboardType="numeric"
-            maxLength={6}
+            maxLength={5}
             />
-            <Icon width="16" height="16" style={{marginLeft:0 , marginBottom: Platform.OS=='ios'? 5 : 0}}></Icon>
+            {/* <Icon width="16" height="16" style={{marginLeft:0 , marginBottom: Platform.OS=='ios'? 5 : 0}}></Icon> */}
         </InputArea>
     );
 }
