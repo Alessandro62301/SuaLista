@@ -9,6 +9,31 @@ import HistoricoIcon from '../../assets/img/historico.svg'
 import ConfigIcon from '../../assets/img/settings.svg'
 import PremiumIcon from '../../assets/img/premium.svg'
 import AvatarIcon from '../../assets/img/account.svg'
+import {createTable , selectList , selectItem , insertList , insertItem , selectAllItems , removeItem , dropTable ,removeAll} from  './Sqlite.js';
+
+// insertItem(name,cod,price,quantity,codList)
+// removeItems()
+    // createTable()
+    // insertList('Junho',776);
+    // insertList('Julho',476);
+    // insertList('Agosto',576);
+    // insertItem('Arroz',14.5,3,1);
+    // insertItem('Batata',6.34,2,1);
+    // insertItem('Cenoura',3.2,3,2);
+    // insertItem('Xuxu',3.2,3,2);
+    
+// removeItem(2);
+    // selectList()
+// selectItem(2)
+// selectAllItems()
+// removeAll()
+// dropTable()
+// createTable();
+selectAllItems()
+selectList()
+selectItem(2)
+
+
 
 export default ({}) => {
     const navigation = useNavigation();

@@ -23,6 +23,8 @@ target 'sualista2' do
   )
 
 
+  pod 'RNSqlite2', :path => '../node_modules/react-native-sqlite-2'
+
   target 'sualista2Tests' do
     inherit! :complete
     # Pods for testing

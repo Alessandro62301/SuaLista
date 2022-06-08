@@ -6,6 +6,8 @@ import SingInput from '../../components/SingInput';
 import Icon from '../../assets/img/nav_next.svg'
 import AsyncStorage from '@react-native-community/async-storage';
 import Lista from '../../classes/Lista'
+// import {insertList} from  './Sqlite.js';
+
 
 export default ({}) => {
     var arrayList = [];

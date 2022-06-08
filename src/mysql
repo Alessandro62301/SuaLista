@@ -1,0 +1,85 @@
+CREATE TABLE Lista (
+	cod int PRIMARY KEY,
+	name VARCHAR(60),
+	balance FLOAT,
+	total FLOAT
+);
+
+CREATE TABLE Item (
+ 	name VARCHAR(60),
+ 	cod INT PRIMARY KEY,
+ 	price FLOAT ,
+ 	quantity INT,
+    codList INT,
+    FOREIGN KEY (codList) REFERENCES Lista(cod)
+);
+
+
+
+INSERT INTO Lista (name,cod,balance,total) values ('Maio',0001,1243,0);
+INSERT INTO Lista (name,cod,balance,total) values ('Junho',0002,982,0);
+INSERT INTO Lista (name,cod,balance,total) values ('Julho',0003,576,0);
+
+INSERT INTO Item(name,cod,price,quantity,codList) values ('Batata',0001,8.5,3,0001)
+INSERT INTO Item(name,cod,price,quantity,codList) values ('Arroz',0002,15.3,3,0002)
+INSERT INTO Item(name,cod,price,quantity,codList) values ('Cenoura',0003,3.78,3,0002)
+INSERT INTO Item(name,cod,price,quantity,codList) values ('Leite',0004,5.5,3,0003)
+INSERT INTO Item(name,cod,price,quantity,codList) values ('Leite',0005,5.5,3,0002)
+
+
+select Lista.name , Item.name , Item.price from Item , Lista  where Item.codList = Lista.cod
+select Item.name , Item.price from Item  where Item.codList = 0002
+delete from Lista
+
+
+   //  txn.executeSql(
+      //   `
+      //   CREATE TABLE if not exists Lista (
+      //     cod int PRIMARY KEY,
+      //     name VARCHAR(60),
+      //     balance FLOAT,
+      //     total FLOAT
+      //   );
+      //   `,
+      //    []
+      //  )
+      //  txn.executeSql(
+      //   `
+      //   CREATE TABLE if not exists Item (
+      //     name VARCHAR(60),
+      //     cod INT PRIMARY KEY,
+      //     price FLOAT ,
+      //     quantity INT,
+      //      codList INT,
+      //      FOREIGN KEY (codList) REFERENCES Lista(cod)
+      //  );
+      //   `,
+      //    []
+      //  )
+
+
+	   txn.executeSql('SELECT * FROM `Lista`', [], function(tx, res) {
+      for (let i = 0; i < res.rows.length; ++i) {
+        console.log('item:', res.rows.item(i))
+      }
+    })
+
+
+	// insertItem(name,cod,price,quantity,codList)
+// removeItems()
+    // createTable()
+    // insertList('Junho',776);
+    // insertList('Julho',476);
+    // insertList('Agosto',576);
+    // insertItem('Arroz',14.5,3,1);
+    // insertItem('Batata',6.34,2,1);
+    // insertItem('Cenoura',3.2,3,2);
+    // insertItem('Xuxu',3.2,3,2);
+    
+// removeItem(2);
+    // selectList()
+// selectItem(2)
+// selectAllItems()
+// removeAll()
+// dropTable()
+// createTable();
