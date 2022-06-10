@@ -11,6 +11,7 @@ import InputItem from  '../../components/InputItem';
 import Icon from '../../assets/img/lapis.svg'
 import InputBalance from '../../components/InputBalance';
 import Colors from '../../components/Function'
+import { selectItem } from '../Menu/Sqlite.js';
 
 export default ({}) => { 
     var arrayList = [];
@@ -122,6 +123,8 @@ export default ({}) => {
     const renderTela = () => {
             
         getList();
+        // var testeSqlite =  selectItem(1);
+
 
         get = setInterval(() => {
             if(arrayList == null){

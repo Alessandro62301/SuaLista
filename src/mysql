@@ -83,3 +83,60 @@ delete from Lista
 // removeAll()
 // dropTable()
 // createTable();
+
+
+
+export function getItem(id){
+  const getData = ()=>{
+    return new Promise((resolve, reject)=>{
+    db.serialize(()=>{
+        db.get('select * from `Item`', (err, rows)=>{
+            if (err)
+                reject(err)
+            resolve(rows)
+        })
+    });
+    })
+}
+
+let promise = getData("return-data-from-sqlite3-nodejs") // => Promise { <pending> }
+.then(results=>{
+console.log(results) // => { slug: 'adding-matomo-website', read_times: 1, shares: 0, likes: 0 }
+})
+}
+
+
+const find = (id) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      //comando SQL modificável
+      tx.executeSql(
+        "SELECT * FROM cars WHERE id=?;",
+        [id],
+        //-----------------------
+        (_, { rows }) => {
+          if (rows.length > 0) resolve(rows._array[0]);
+          else reject("Obj not found: id=" + id); // nenhum registro encontrado
+        },
+        (_, error) => reject(error) // erro interno em tx.executeSql
+      );
+    });
+  });
+};
+
+// Lista.create( {name:'Lista Nova', balance:1231, total:0} )
+// .then( id => console.log('List created with id: '+ id) )
+// .catch( err => console.log(err) )
+
+// Lista.update( 1, {name:'AttLista', balance:1333, total:0} )
+// .then( updated => console.log('Lista updated: '+ updated) )
+// .catch( err => console.log(err) )
+
+// Lista.find( 1 ) 
+// .then( lista => console.log(lista) )
+// .catch( err => console.log(err) )
+
+// Lista.remove(5)
+// .then( updated => console.log('Lista removed: '+ updated) )
+// .catch( err => console.log(err) )
+

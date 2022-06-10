@@ -1,7 +1,4 @@
-import SQLite from 'react-native-sqlite-2';
-
-
-const db = SQLite.openDatabase('test.db', '1.0', '', 1)
+import db from '../../services/SqliteDatabase.js'
 
 export function dropTable(){
   db.transaction(function(txn) {
@@ -64,6 +61,24 @@ export function selectItem(id){
   })
 }
 
+export const find = (id) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      //comando SQL modificável
+      tx.executeSql(
+        'select Item.name , Item.price , Item.quantity from `Item`  where Item.codList = :id',
+        [id],
+        //-----------------------
+        (_, { rows }) => {
+          if (rows.length > 0) resolve(rows._array[0]);
+          else reject("Obj not found: id=" + id); // nenhum registro encontrado
+        },
+        (_, error) => reject(error) // erro interno em tx.executeSql
+      );
+    });
+  });
+};
+
 
 export function selectList(){
   db.transaction(function(txn) {
@@ -113,4 +128,24 @@ export function removeAll(id){
   })
 }
 
+// export default function select() {
+//   return new Promise((resolve, reject) => {
+//       const queries = [];
+//       db.each(`SELECT rowid as key, * FROM Lista`, (err, row) => {
+//           if (err) {
+//               reject(err); // optional: you might choose to swallow errors.
+//           } else {
+//               queries.push(row); // accumulate the data
+//           }
+//       }, (err, n) => {
+//           if (err) {
+//               reject(err); // optional: again, you might choose to swallow this error.
+//           } else {
+//               resolve(queries); // resolve the promise
+//           }
+//       });
+//   });
+// }
 
+// select();
+// // console.log(teste);
