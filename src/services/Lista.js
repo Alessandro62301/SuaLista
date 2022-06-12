@@ -12,7 +12,7 @@ db.transaction((tx) => {
         cod integer PRIMARY KEY AUTOINCREMENT,
         name VARCHAR(60),
         balance FLOAT,
-        total FLOAT
+        total FLOAT,
       );
       `
     );
@@ -48,6 +48,24 @@ const create = (obj) => {
         tx.executeSql(
           "UPDATE Lista SET name=?, balance=?, total=? WHERE cod=?;",
           [obj.name, obj.balance, obj.total, id],
+          //-----------------------
+          (_, { rowsAffected }) => {
+            if (rowsAffected > 0) resolve(rowsAffected);
+            else reject("Error updating obj: id=" + id); // nenhum registro alterado
+          },
+          (_, error) => reject(error) // erro interno em tx.executeSql
+        );
+      });
+    });
+  };
+  
+ const updateBalance = (id, obj) => {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        //comando SQL modificável
+        tx.executeSql(
+          "UPDATE Lista SET balance=?, total=? WHERE cod=?;",
+          [obj.balance, obj.total, id],
           //-----------------------
           (_, { rowsAffected }) => {
             if (rowsAffected > 0) resolve(rowsAffected);
@@ -137,4 +155,5 @@ const create = (obj) => {
     find,
     all,
     remove,
+    updateBalance
   };

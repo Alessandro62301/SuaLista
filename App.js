@@ -55,12 +55,12 @@ var teste = [];
 // } )
 // )
 
-Item.allInList(2)
-.then( 
-lista => lista.forEach( c => {
-console.log(c);
-} )
-)
+// Item.allInList(2)
+// .then( 
+// lista => lista.forEach( c => {
+// console.log(c);
+// } )
+// )
 
 
 

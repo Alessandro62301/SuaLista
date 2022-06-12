@@ -5,7 +5,7 @@ import HeaderArea from '../../components/HeaderArea';
 import SingInput from '../../components/SingInput';
 import Icon from '../../assets/img/nav_next.svg'
 import AsyncStorage from '@react-native-community/async-storage';
-import Lista from '../../classes/Lista'
+import Lista from '../../services/Lista'
 // import {insertList} from  './Sqlite.js';
 
 
@@ -29,43 +29,40 @@ export default ({}) => {
 
     const CreateList = () => {
         if(nameField != '' & valueField != null){
-            var listTeste = new Lista(nameField , valueField , 0);
-            listTeste.items = [];
-    
-            arrayList.push(listTeste);
-            storageList(arrayList)
-            console.log('Lista Salva!');
-            goTo('Lista');
+            Lista.create( {name:nameField, balance:valueField, total:0} )
+            .then( id => console.log('List created with id: '+ id) )
+            .catch( err => console.log(err) )
+            // goTo('Lista');
         }else{
             alert('Preencha os Campos')
         }
     }
-    const getList = async () => {
-        try {
-            arrayList = JSON.parse(await AsyncStorage.getItem("arrayLista"));
-        } catch (error) {
-            console.log(error); 
-        }
-    }
+//     const getList = async () => {
+//         try {
+//             arrayList = JSON.parse(await AsyncStorage.getItem("arrayLista"));
+//         } catch (error) {
+//             console.log(error); 
+//         }
+//     }
 
-    const renderTela = () => {
-        getList();
-             get = setInterval(() => {
-                if (arrayList != null) {
-                    goTo('Lista');
-                    clearInterval(get)
-                }else{
-                    clearInterval(get)
-                }
-            }, 10)
-    }
+//     const renderTela = () => {
+//         getList();
+//              get = setInterval(() => {
+//                 if (arrayList != null) {
+//                     goTo('Lista');
+//                     clearInterval(get)
+//                 }else{
+//                     clearInterval(get)
+//                 }
+//             }, 10)
+//     }
 
-    React.useEffect(() => {
-     const unsubscribe = navigation.addListener('focus', () => {
-        renderTela()
-     });          
-     return unsubscribe;
-   }, [navigation]);
+//     React.useEffect(() => {
+//      const unsubscribe = navigation.addListener('focus', () => {
+//         renderTela()
+//      });          
+//      return unsubscribe;
+//    }, [navigation]);
 
     return(
         <Container>

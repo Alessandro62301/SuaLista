@@ -3,8 +3,8 @@ import { Keyboard , StatusBar } from 'react-native';
 import { Container , HeaderAreaSaldo, HeaderText, HeaderTextGreen , Scroller , AreaNameList , AreaNameText , HeaderAreaIcon , HeaderAreaText,  AreaTotal ,AreaTotalText, Rows, RowStyled, AreaCard , Wrapper, ContainerCenter , LoadingIcon, HeaderRow , CustomButton ,CustomButtonText , ContainerInput} from './styles';
 import CardItem from '../../components/lista/CardItem';
 import { useNavigation } from '@react-navigation/native';
-import Item from '../../classes/Item';
-import Lista from '../../classes/Lista';
+// import Item from '../../classes/Item';
+// import Lista from '../../classes/Lista';
 import ListaIcon from '../../assets/img/salvar.svg'
 import AsyncStorage from '@react-native-community/async-storage';
 import InputItem from  '../../components/InputItem';
@@ -13,8 +13,12 @@ import InputBalance from '../../components/InputBalance';
 import Colors from '../../components/Function'
 import { selectItem } from '../Menu/Sqlite.js';
 
+import Lista from '../../services/Lista.js'
+import Item from '../../services/Item.js'
+
 export default ({}) => { 
-    var arrayList = [];
+    var arrayList;
+    var itemList = [];
     const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [balanceField, setBalanceField] = useState(0);
@@ -26,41 +30,43 @@ export default ({}) => {
     const [nameItem, setNameItem] = useState('');
     const [priceItem, setPriceItem] = useState('');
     const [showAddArea, setShowAddArea] = useState(false);
-    const indexList = 0;
+    const indexList = 1;
 
     const goTo = (screenName) => {
         navigation.navigate(screenName);
     }
 
-    const storageList = async (value) => {
-        try {
-        await AsyncStorage.setItem("arrayLista", JSON.stringify(value));
-        } catch (error) {
-        console.log(error);
-        }
+    const getItem = async () => {
+        setLoading(true);
+
+        Item.allInList(indexList)
+        .then( 
+        item => item.forEach( c => {
+        // console.log(c);
+        itemList.push(c)
+        } )
+        )
+        setList(itemList)
+        setLoading(false);
     }
-    //storageList(listas);
+    
     const getList = async () => {
         setLoading(true);
-        setList([]);
-        try {
-            arrayList = JSON.parse(await AsyncStorage.getItem("arrayLista"));
-        } catch (error) {
-            console.log(error); 
-        }
-        setLoading(false);
+        
+        Lista.find(indexList) 
+        .then( lista => {
+            arrayList = lista;
+            // console.log(lista);
+        } )
+        .catch( err => console.log(err) )
 
+        setLoading(false);
     }
 
     const saveList = async (id) => {
-        render();
-        var listTeste = new Lista(nameField , balanceField , totalField);
-        listTeste.items = list;
-
-        arrayList[id] = listTeste;
-        storageList(arrayList)
-        console.log('Lista Salva!');
-        alert('Lista Salva!');
+        Lista.update( indexList, {name:nameField,balance:balanceField, total:totalField} )
+        .then( updated => console.log('Lista updated: '+ updated) )
+        .catch( err => console.log(err) )
     }
 
     const render = () => { 
@@ -97,18 +103,20 @@ export default ({}) => {
                 alert('Preco Invalido');
                 setPriceItem('')
             }else{
-                
-            const item = new Item(nameItem,parseFloat(priceItem));
-            list.push(item);
+            
+            Item.create( {name:nameItem, price:priceItem, quantity:1,codList:indexList} )
+            .then( id => console.log('Item created with id: '+ id) )
+            .catch( err => console.log(err) )
+
+            // list.push(item);
+            renderTela()
             setTotalField(total())
             setTrocoField(balanceField - total())
+            
             render();
-            console.log('Item Adicionado' + item);
             setNameItem('');
             setPriceItem('')
-            }
-
-            
+            }            
         }else{
             if(nameItem == '' && priceItem == ''){
                 setShowAddArea(!showAddArea)
@@ -120,47 +128,38 @@ export default ({}) => {
         
     }
     
-    const renderTela = () => {
+    const renderTela = async () => {
             
-        getList();
-        // var testeSqlite =  selectItem(1);
-
+        await getList()
+        await getItem();
 
         get = setInterval(() => {
-            if(arrayList == null){
-                goTo('CreateList')
-            }else{
-            if (arrayList[indexList] != null) {
-                setLoading(true)
-                console.log(arrayList);
-                
-                setList(arrayList[indexList].items)
-                
-                setNameField(arrayList[indexList].name)
+            if (arrayList) {
+
+                setNameField(arrayList.name)
                 setShowTotal(true);
-                setBalanceField((arrayList[indexList].balance))
-                setTotalField(arrayList[indexList].total)
-                setTrocoField(arrayList[indexList].balance - arrayList[indexList].total)
+                setBalanceField((arrayList.balance))
+                setTotalField(arrayList.total)
+                setTrocoField(arrayList.balance - arrayList.total)
 
+                setLoading(true)
                 clearInterval(get)
-
                 }else{
+                    // console.log('lalalal');
                     setLoading(false)
                 }
-            }
-        
     }, 10)
 
     }
 
-    // const changeBalance = (t) => {
-    //     if(t === ''|| t == null){
-    //         setBalanceField(0)
-    //     }else{
-    //         setBalanceField(parseFloat(t))
-    //     }
-    //     console.log(t);   
-    // }
+    const changeBalance = (t) => {
+        if(t === ''|| t == null){
+            setBalanceField(0)
+        }else{
+            setBalanceField(parseFloat(t))
+        }
+        console.log(t);   
+    }
 
     const changePriceItem = (t) => {
         if(t[0] == '.' || t[0] == ','){
@@ -193,8 +192,6 @@ useEffect(()=>{
 
     return(
         <Container>
-            {loading&&
-            <>
             <ContainerCenter>
                 <HeaderAreaSaldo>
                     <HeaderAreaText>
@@ -241,13 +238,11 @@ useEffect(()=>{
                         <CustomButtonText>Adicionar</CustomButtonText>
                     </CustomButton>
                 </ContainerInput>
-                </>
-            }
             <Scroller endFillColor="#fff" indicatorStyle="white">
 
                 <AreaCard>
                 {loading===false?  <LoadingIcon size="large" color="#006CF9" /> : 
-                list.map(item => ( <CardItem item={item} key={item.id} clickFnAdd={render} remove={removeItem}></CardItem> ))
+                list.map(item => ( <CardItem item={item} key={item.cod} clickFnAdd={render} remove={removeItem}></CardItem> ))
                 }
                 </AreaCard>
             

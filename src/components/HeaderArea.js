@@ -7,7 +7,6 @@ import DropShadow from "react-native-drop-shadow";
 
 
 export const Container = styled.SafeAreaView`
-    flex: 1;
     background-color:#FAF5F1;
 `;
 export const HeaderArea = styled.SafeAreaView`
