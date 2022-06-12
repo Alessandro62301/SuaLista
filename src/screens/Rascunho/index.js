@@ -26,6 +26,9 @@ const getList = async () => {
     setList(arrayList)
     setLoading(false);
 }
+const handle = () => {
+   renderTela()
+}
 
 
 const renderTela = async () => {
@@ -61,7 +64,7 @@ React.useEffect(() => {
             <HeaderArea/>
             <AreaList>
             {loading===false?  <LoadingIcon size="large" color="#006CF9" /> :
-             list.map(item => ( <ListItem item={item} key={item.cod}></ListItem> ))}
+             list.map(item => ( <ListItem item={item} key={item.cod} clickFn={handle}></ListItem> ))}
             </AreaList>
         </Container>
     );

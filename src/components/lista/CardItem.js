@@ -8,6 +8,8 @@ import AddIcon from '../../assets/img/mais.svg'
 import RemoveIcon from '../../assets/img/menos.svg'
 import PencilIcon from '../../assets/img/lapis.svg'
 
+import Item from '../../services/Item'
+
 
 export const Card = styled.View`
     height: 78px;
@@ -86,6 +88,7 @@ export default ({item , clickFnAdd , remove}) => {
     const [statusCheck,setStatusCheck] = useState(item.status);
     const [quantityState,setQuantity] = useState(item.quantity);
     const [price,setPrice] = useState(item.price);
+
     let teste = '';
 
 
@@ -97,21 +100,36 @@ export default ({item , clickFnAdd , remove}) => {
     const handleAdd = () => {
         item.quantity = item.quantity + 1;
         setQuantity(item.quantity)
-        console.log(item.quantity);
+
+        Item.update( item.cod, {name:item.name, price:item.price, quantity:item.quantity} )
+        .then( updated => console.log('Item updated: '+ updated) )
+        .catch( err => console.log(err) )
+
+        console.log(quantityState);
         clickFnAdd()
 
     }
     const handleRemove = () => {
-        if(item.quantity - 1 > -1){
-            item.quantity  = item.quantity - 1;
+        if(item.quantity - 1 < 0){
+            return;
           }    
-        setQuantity(item.quantity)
-        console.log(item.quantity);
-        clickFnAdd()
+          item.quantity = item.quantity - 1;
+          setQuantity(item.quantity)
+  
+          Item.update( item.cod, {name:item.name, price:item.price, quantity:item.quantity} )
+          .then( updated => console.log('Item updated: '+ updated) )
+          .catch( err => console.log(err) )
+  
+          console.log(quantityState);
+          clickFnAdd()
+  
     }
 
     const handleClose = () => {
-        remove(item.id);
+        remove(item.cod);
+        Item.remove(item.cod)
+        .then( updated => console.log('Item removed: '+ updated) )
+        .catch( err => console.log(err) )
     }
     const changePrice = (t) => {
 

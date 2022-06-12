@@ -34,13 +34,12 @@ export const ConteinerText = styled.View`
 export default ({today}) => {
 
     todayColors = ['#FFDEAD','#FFADBD','#CEADFF','#FFC8AD','#C9FFAD','#ADE9FF','#F1FFAD'];
-    todayTitle = ['Segunda Feira','Terca Feira','Quarta Feira','Quinta Feira','Sexta Feira','Sabado','Domingo'];
+    todayTitle = ['Domingo','Segunda Feira','Terca Feira','Quarta Feira','Quinta Feira','Sexta Feira','Sabado'];
 
     var day = parseInt(today.getDay());
     var date = parseInt(today.getDate());
     var month = parseInt(today.getMonth());
 
-    day = day - 1;
     month = month + 1;
 
     return(    

@@ -1,6 +1,6 @@
 import db from './SqliteDatabase.js'
 
-
+// status bolean
 
 db.transaction((tx) => {
     //<<<<<<<<<<<<<<<<<<<<<<<< USE ISSO APENAS DURANTE OS TESTES!!! >>>>>>>>>>>>>>>>>>>>>>>
@@ -14,7 +14,7 @@ db.transaction((tx) => {
         cod integer PRIMARY KEY AUTOINCREMENT,
         price FLOAT ,
         quantity integer,
-         codList integer,
+        codList integer,
          FOREIGN KEY (codList) REFERENCES Lista(cod)
      );
       `
@@ -149,6 +149,23 @@ db.transaction((tx) => {
       });
     });
   };
+
+   const removeItemsInList = (id) => {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        //comando SQL modificável
+        tx.executeSql(
+          "DELETE FROM Item WHERE codList=?;",
+          [id],
+          //-----------------------
+          (_, { rowsAffected }) => {
+            resolve(rowsAffected);
+          },
+          (_, error) => reject(error) // erro interno em tx.executeSql
+        );
+      });
+    });
+  };
   
   export default {
     create,
@@ -157,4 +174,5 @@ db.transaction((tx) => {
     allInList,
     all,
     remove,
+    removeItemsInList
   };

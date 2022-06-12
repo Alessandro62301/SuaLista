@@ -14,7 +14,7 @@ export default ({}) => {
     const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [valueField, setValueField] = useState();
-    // AsyncStorage.clear('arraylist',()=>{})
+
     const goTo = (screenName) => {
         navigation.navigate(screenName);
     }
@@ -31,38 +31,16 @@ export default ({}) => {
         if(nameField != '' & valueField != null){
             Lista.create( {name:nameField, balance:valueField, total:0} )
             .then( id => console.log('List created with id: '+ id) )
-            .catch( err => console.log(err) )
-            // goTo('Lista');
+            .catch( err => console.log(err))
+
+            setNameField('')
+            setValueField('')
+            goTo('Rascunho');
         }else{
             alert('Preencha os Campos')
         }
     }
-//     const getList = async () => {
-//         try {
-//             arrayList = JSON.parse(await AsyncStorage.getItem("arrayLista"));
-//         } catch (error) {
-//             console.log(error); 
-//         }
-//     }
 
-//     const renderTela = () => {
-//         getList();
-//              get = setInterval(() => {
-//                 if (arrayList != null) {
-//                     goTo('Lista');
-//                     clearInterval(get)
-//                 }else{
-//                     clearInterval(get)
-//                 }
-//             }, 10)
-//     }
-
-//     React.useEffect(() => {
-//      const unsubscribe = navigation.addListener('focus', () => {
-//         renderTela()
-//      });          
-//      return unsubscribe;
-//    }, [navigation]);
 
     return(
         <Container>

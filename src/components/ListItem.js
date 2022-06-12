@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import DropShadow from "react-native-drop-shadow";
 import CloseIcon from '../assets/img/closeItem.svg'
 
+import Lista from '../services/Lista'
+import Item from '../services/Item'
 
 
-export const Card = styled.View`
+export const Card = styled.TouchableOpacity`
     height: 78px;
     border-radius:8px;
     background: #fff;
@@ -76,7 +78,20 @@ export const Check = styled.View`
     align-items:center;
 `;
 
-export default ({item}) => {
+export default ({item , clickFn}) => {
+
+    const handleClose = () => {
+
+        Item.removeItemsInList(item.cod)
+        .then( updated => console.log('Item da lista removed: '+ updated) )
+        .catch( err => console.log(err) )
+
+        Lista.remove(item.cod)
+        .then( updated => console.log('Lista removed: '+ updated) )
+        .catch( err => console.log(err) )
+
+        clickFn()
+    }
 
     return(    
         <DropShadow

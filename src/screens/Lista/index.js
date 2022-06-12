@@ -3,8 +3,7 @@ import { Keyboard , StatusBar } from 'react-native';
 import { Container , HeaderAreaSaldo, HeaderText, HeaderTextGreen , Scroller , AreaNameList , AreaNameText , HeaderAreaIcon , HeaderAreaText,  AreaTotal ,AreaTotalText, Rows, RowStyled, AreaCard , Wrapper, ContainerCenter , LoadingIcon, HeaderRow , CustomButton ,CustomButtonText , ContainerInput} from './styles';
 import CardItem from '../../components/lista/CardItem';
 import { useNavigation } from '@react-navigation/native';
-// import Item from '../../classes/Item';
-// import Lista from '../../classes/Lista';
+
 import ListaIcon from '../../assets/img/salvar.svg'
 import AsyncStorage from '@react-native-community/async-storage';
 import InputItem from  '../../components/InputItem';
@@ -30,7 +29,7 @@ export default ({}) => {
     const [nameItem, setNameItem] = useState('');
     const [priceItem, setPriceItem] = useState('');
     const [showAddArea, setShowAddArea] = useState(false);
-    const indexList = 1;
+    const indexList = 2;
 
     const goTo = (screenName) => {
         navigation.navigate(screenName);
@@ -72,6 +71,10 @@ export default ({}) => {
     const render = () => { 
         setTotalField(total())
         setTrocoField((balanceField - total()))
+
+        Lista.update( 1, {name:nameField, balance:balanceField, total:total()} )
+        .then( updated => console.log('Lista updated: '+ updated) )
+        .catch( err => console.log(err) )
     }
 
     const total = () => {
@@ -86,13 +89,12 @@ export default ({}) => {
     const removeItem = (id) => {
 
         for(var i = 0 ; i  < list.length ; i++){
-            if(list[i].id == id){
+            if(list[i].cod == id){
                 list.splice(i,1);
             }
         }
-        setTotalField(total())
-        setTrocoField(balanceField - total())
-        render();
+        render()
+        // renderTela();
 
     }
 
