@@ -140,3 +140,19 @@ const find = (id) => {
 // .then( updated => console.log('Lista removed: '+ updated) )
 // .catch( err => console.log(err) )
 
+const setCurrentList = async (value) => {
+  try {
+  await AsyncStorage.setItem("CurrentList", JSON.stringify(value));
+  } catch (error) {
+  console.log(error);
+  }
+}
+
+const getCurrentList = async () => {
+  try {
+      teste = JSON.parse(await AsyncStorage.getItem("CurrentList"));
+
+  } catch (error) {
+  console.log(error); 
+  }
+}

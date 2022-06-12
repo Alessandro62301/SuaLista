@@ -5,14 +5,28 @@ import { useNavigation } from '@react-navigation/native';
 import Lista from '../../services/Lista.js'
 import Item from '../../services/Item.js'
 import ListItem from '../../components/ListItem'
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default () => {
     var arrayList = [];
+    var teste;
     const navigation = useNavigation();
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(true);
 
+
+const goTo = (screenName) => {
+    navigation.navigate(screenName);
+}
+
+const setCurrentList = async (value) => {
+    try {
+    await AsyncStorage.setItem("CurrentList", JSON.stringify(value));
+    } catch (error) {
+    console.log(error);
+    }
+}
 
 const getList = async () => {
     setLoading(true);
@@ -26,10 +40,16 @@ const getList = async () => {
     setList(arrayList)
     setLoading(false);
 }
-const handle = () => {
-   renderTela()
-}
 
+const handle = () => {
+    setCurrentList(null)
+    renderTela()
+}
+const handleList = (cod) => {
+    setCurrentList(cod)
+    goTo('Lista')
+    // console.log('CurrentList Add == ' + cod);
+}
 
 const renderTela = async () => {
             
@@ -37,11 +57,10 @@ const renderTela = async () => {
 
      get = setInterval(() => {
          if (arrayList) {
-             console.log(arrayList);
+            //  console.log(arrayList);
              clearInterval(get)
              setLoading(true)
              }else{
-                console.log('lalalal');
                 setLoading(false)
              }
  }, 10)
@@ -64,7 +83,7 @@ React.useEffect(() => {
             <HeaderArea/>
             <AreaList>
             {loading===false?  <LoadingIcon size="large" color="#006CF9" /> :
-             list.map(item => ( <ListItem item={item} key={item.cod} clickFn={handle}></ListItem> ))}
+             list.map(item => ( <ListItem item={item} key={item.cod} clickFn={handle} toogleList={handleList}></ListItem> ))}
             </AreaList>
         </Container>
     );

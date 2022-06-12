@@ -18,6 +18,7 @@ import Item from '../../services/Item.js'
 export default ({}) => { 
     var arrayList;
     var itemList = [];
+    var teste;
     const navigation = useNavigation();
     const [nameField, setNameField] = useState('');
     const [balanceField, setBalanceField] = useState(0);
@@ -29,14 +30,32 @@ export default ({}) => {
     const [nameItem, setNameItem] = useState('');
     const [priceItem, setPriceItem] = useState('');
     const [showAddArea, setShowAddArea] = useState(false);
-    const indexList = 2;
-
+    const [index,setIndex] = useState()
+    var indexList;
+    
     const goTo = (screenName) => {
         navigation.navigate(screenName);
     }
 
-    const getItem = async () => {
+        
+    const getCurrentList = async () => {
+        
+        try {
+            indexList = JSON.parse(await AsyncStorage.getItem("CurrentList"));
+            console.log('CurrentList == ' + indexList);
+            if(indexList == null){
+                goTo('Rascunho')
+            }
+        
+        } catch (error) {
+        console.log(error); 
+        }
+        setIndex(indexList)
+    }
+
+    const getItemSql = async () => {
         setLoading(true);
+        itemList=[]
 
         Item.allInList(indexList)
         .then( 
@@ -63,7 +82,7 @@ export default ({}) => {
     }
 
     const saveList = async (id) => {
-        Lista.update( indexList, {name:nameField,balance:balanceField, total:totalField} )
+        Lista.update( index, {name:nameField,balance:balanceField, total:totalField} )
         .then( updated => console.log('Lista updated: '+ updated) )
         .catch( err => console.log(err) )
     }
@@ -72,7 +91,7 @@ export default ({}) => {
         setTotalField(total())
         setTrocoField((balanceField - total()))
 
-        Lista.update( 1, {name:nameField, balance:balanceField, total:total()} )
+        Lista.update( index, {name:nameField, balance:balanceField, total:total()} )
         .then( updated => console.log('Lista updated: '+ updated) )
         .catch( err => console.log(err) )
     }
@@ -106,16 +125,13 @@ export default ({}) => {
                 setPriceItem('')
             }else{
             
-            Item.create( {name:nameItem, price:priceItem, quantity:1,codList:indexList} )
+            Item.create( {name:nameItem, price:priceItem, quantity:1,codList:index} )
             .then( id => console.log('Item created with id: '+ id) )
             .catch( err => console.log(err) )
-
-            // list.push(item);
-            renderTela()
-            setTotalField(total())
-            setTrocoField(balanceField - total())
             
-            render();
+            renderTela();
+            render()
+
             setNameItem('');
             setPriceItem('')
             }            
@@ -131,29 +147,56 @@ export default ({}) => {
     }
     
     const renderTela = async () => {
-            
-        await getList()
-        await getItem();
 
-        get = setInterval(() => {
-            if (arrayList) {
+        await getCurrentList();
+        await getList();
+        await getItemSql();
 
-                setNameField(arrayList.name)
-                setShowTotal(true);
-                setBalanceField((arrayList.balance))
-                setTotalField(arrayList.total)
-                setTrocoField(arrayList.balance - arrayList.total)
+        setTimeout(() => {
 
-                setLoading(true)
-                clearInterval(get)
-                }else{
-                    // console.log('lalalal');
-                    setLoading(false)
-                }
-    }, 10)
+            get = setInterval(() => {
+                if (arrayList) {
+                    setNameField(arrayList.name)
+                    setShowTotal(true);
+                    setBalanceField((arrayList.balance))
 
+                    setTotalField(arrayList.total)
+                    setTrocoField(arrayList.balance - arrayList.total)
+
+                    setLoading(true)
+                    clearInterval(get)
+                    }else{
+                        // console.log('lalalal');
+                        setLoading(false)
+                    }
+        }, 10)
+
+        }, 100);
     }
+    const renderItem = async () => {
 
+        await getCurrentList();
+        await getList();
+        await getItemSql();
+
+        setTimeout(() => {
+
+            get = setInterval(() => {
+                if (arrayList) {
+                    setNameField(arrayList.name)
+                    setShowTotal(true);
+                    setBalanceField((arrayList.balance))
+
+                    setLoading(true)
+                    clearInterval(get)
+                    }else{
+                        // console.log('lalalal');
+                        setLoading(false)
+                    }
+        }, 10)
+
+        }, 100);
+    }
     const changeBalance = (t) => {
         if(t === ''|| t == null){
             setBalanceField(0)
@@ -187,9 +230,16 @@ export default ({}) => {
     
 
 useEffect(()=>{
-    renderTela();
     keyboardView();
 }, []);
+
+React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+            renderTela()
+          });          
+          return unsubscribe;
+}, [navigation]);
+    
    
 
     return(
@@ -251,7 +301,7 @@ useEffect(()=>{
 
             </Scroller>
                 
-            {loading&& 
+            {loading&&
             showTotal&&<Wrapper style={{position: 'absolute' , bottom: 0}}>
             <AreaTotal style={{borderTopRightRadius: 14 , borderTopLeftRadius: 14}}>
             <Rows>
@@ -266,7 +316,7 @@ useEffect(()=>{
             </Rows>
             </AreaTotal>
             </Wrapper>
-            }
+        }
         </Container>
     );
 }

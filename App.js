@@ -44,7 +44,7 @@ var teste = [];
 // .then( lista => console.log(lista) )
 // .catch( err => console.log(err) )
 
-// Item.remove(6)
+// Item.remove(31)
 // .then( updated => console.log('Item removed: '+ updated) )
 // .catch( err => console.log(err) )
 
@@ -55,7 +55,13 @@ var teste = [];
 // } )
 // )
 
-Item.allInList(1)
+Item.all()
+.then( 
+lista => lista.forEach( c => {
+console.log(c);
+} )
+)
+Lista.all()
 .then( 
 lista => lista.forEach( c => {
 console.log(c);

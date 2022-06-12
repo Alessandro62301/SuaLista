@@ -78,7 +78,7 @@ export const Check = styled.View`
     align-items:center;
 `;
 
-export default ({item , clickFn}) => {
+export default ({item , clickFn , toogleList}) => {
 
     const handleClose = () => {
 
@@ -91,6 +91,10 @@ export default ({item , clickFn}) => {
         .catch( err => console.log(err) )
 
         clickFn()
+    }
+    const handleList = (cod) => {
+
+        toogleList(cod)
     }
 
     return(    
@@ -107,7 +111,7 @@ export default ({item , clickFn}) => {
             paddingRight:6,
           }}
         >  
-            <Card>
+            <Card onPress={()=>handleList(item.cod)}>
                 <TextArea>
                     <TextDesc>Lista : {item.name}</TextDesc>
                     <TextDesc>Saldo : {item.balance}</TextDesc>

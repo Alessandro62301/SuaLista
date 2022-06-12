@@ -19,9 +19,9 @@ export default ({}) => {
         navigation.navigate(screenName);
     }
 
-    const storageList = async (value) => {
+    const setCurrentList = async (value) => {
         try {
-        await AsyncStorage.setItem("arrayLista", JSON.stringify(value));
+        await AsyncStorage.setItem("CurrentList", JSON.stringify(value));
         } catch (error) {
         console.log(error);
         }
@@ -30,7 +30,7 @@ export default ({}) => {
     const CreateList = () => {
         if(nameField != '' & valueField != null){
             Lista.create( {name:nameField, balance:valueField, total:0} )
-            .then( id => console.log('List created with id: '+ id) )
+            .then( id => console.log('List created with id: '+ id))
             .catch( err => console.log(err))
 
             setNameField('')
